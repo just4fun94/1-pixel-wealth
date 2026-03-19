@@ -145,10 +145,10 @@ h1 {
   flex-basis: auto;
   position: static;
 }
-.four-hundred .wealth > .wealth-title {
+.top200 .wealth > .wealth-title {
   flex-basis: auto;
 }
-.four-hundred .intro {
+.top200 .intro {
   margin-top: 0;
   position: relative;
   height: auto;
@@ -191,6 +191,14 @@ h1 {
   line-height: 1.4;
   width: 96vw;
   max-width: 600px;
+}
+.infobox .title-square-wrapper .title {
+  text-align: center;
+}
+.infobox .title-square-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 @media (max-width: 450px) {
   .infobox .midtext,
@@ -235,14 +243,14 @@ h1 {
 }
 .infobox {
   z-index: 1;
-  margin-top: var(--infobox-margin, 6000px);
-  height: 100vh;
+  margin-top: 0;
+  height: calc(var(--infobox-margin, 6000px) * 2);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.four-hundred .infobox {
+.top200 .infobox {
   height: auto;
   min-height: 100vh;
 }
@@ -250,8 +258,7 @@ h1 {
   display: flex;
 }
 .infobox.first {
-  margin-top: var(--infobox-first-margin, 30000px);
-}
+  margin-top: var(--infobox-first-margin, 30000px);  height: calc(var(--infobox-first-margin, 15000px) * 2);}
 .infobox.first .title {
   max-width: 390px;
 }
@@ -260,29 +267,43 @@ h1 {
   max-width: 280px;
 }
 .infobox-half {
-  margin-top: var(--infobox-half-margin, 4000px);
+  margin-top: 0;
+  height: calc(var(--infobox-half-margin, 4000px) * 2);
 }
 .infobox-quarter {
-  margin-top: var(--infobox-quarter-margin, 2000px);
+  margin-top: 0;
+  height: calc(var(--infobox-quarter-margin, 2000px) * 2);
 }
 .infobox-close {
-  margin-top: var(--infobox-close-margin, 500px);
+  margin-top: 0;
+  height: calc(var(--infobox-close-margin, 500px) * 2);
 }
 .sub-infobox {
   margin: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .sub-infobox .title {
-  width: 430px;
+  max-width: 430px;
+  width: auto;
+  text-align: center;
 }
 .midtext-wrapper {
   display: flex;
   justify-content: space-around;
-  margin-left: 150px;
+  margin-left: 0;
   height: 60%;
   flex-direction: column;
+  align-items: center;
 }
 .column-infobox .sub-infobox {
   margin-bottom: 20px;
+}
+.column-infobox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .one-thousand {
   width: 1px;
@@ -311,12 +332,12 @@ h1 {
   width: var(--bar-width-billion, 500px);
   background-color: #03A9F4;
 }
-.bezos .wealth {
+.richest .wealth {
   height: var(--richest-h, 278000px);
   width: var(--bar-width, 500px);
   background-color: orange;
 }
-.four-hundred .wealth {
+.top200 .wealth {
   margin-top: 100px;
   height: var(--top200-h, 5920000px);
   width: var(--bar-width, 500px);
@@ -353,10 +374,10 @@ h1 {
   white-space: nowrap;
   padding: 2px;
 }
-.bezos .key > span {
+.richest .key > span {
   background-color: orange;
 }
-.four-hundred .key > span {
+.top200 .key > span {
   background-color: #03A9F4;
 }
 .shadow {
@@ -386,7 +407,6 @@ h1 {
 .year-veteran .square {
   width: 400px;
   height: 1186px;
-  margin-left: 5px;
   background-color: #8BC34A;
 }
 .year-veteran .title {
@@ -394,6 +414,8 @@ h1 {
   padding: 10px;
   max-width: 380px;
   top: 0;
+  text-align: center;
+  box-sizing: border-box;
 }
 .year-veteran .square {
   position: static;
@@ -413,7 +435,12 @@ h1 {
   padding: 10px;
   position: sticky;
   top: 1px;
-  display: inline-block;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 .year-chemo .key {
   top: auto;
@@ -431,6 +458,7 @@ h1 {
   display: flex;
   flex-direction: column;
   width: auto;
+  align-items: center;
 }
 .beyonce .square {
   width: 350px;
@@ -537,7 +565,7 @@ h1 {
   height: 400px;
   overflow: scroll;
 }
-.four-hundred-people .people {
+.top200-people .people {
   width: 800px;
   height: 400px;
 }
@@ -597,7 +625,7 @@ h1 {
     width: 200px;
     height: 400px;
   }
-  .four-hundred-people .people {
+  .top200-people .people {
       width: 200px;
       height: 400px;
   }

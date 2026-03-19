@@ -62,11 +62,11 @@
         </div>
       </div>
 
-      <div name="bezos" class="wealth-wrapper bezos">
-        <div id="bezos" class="wealth ruler">
+      <div name="richest" class="wealth-wrapper richest">
+        <div id="richest" class="wealth ruler">
           <div class="wealth-header">
             <h2 class="wealth-title i18n-USD139-billion-wealth" id="richest-title">$139 billion (wealth of Jeff Bezos)</h2>
-            <div class="counter" id="bezos-counter"></div>
+            <div class="counter" id="richest-counter"></div>
           </div>
           <div class="key">
             <span class="i18n-USD80-million scale-label">$80 million</span>
@@ -81,7 +81,7 @@
           </div>
 
           <div class="five-pixels text-infobox infobox-half infobox">
-            <div class="title i18n-every-10-pixels">Every 10 pixels you scroll is $5 million.</div>
+            <div class="title i18n-every-10-pixels" id="pixels-value-text">Every 10 pixels you scroll is $5 million.</div>
           </div>
 
           <div class="coming-up text-infobox infobox">
@@ -89,7 +89,7 @@
           </div>
 
           <div class="text-infobox infobox">
-            <div id="bezos-counter-start" class="title">
+            <div id="richest-counter-start" class="title">
               <p class="i18n-lol-just-kidding">Lol, just kidding, we're about &#8531; of the way. Keep scrolling though, there's more to see.</p>
             </div>
           </div>
@@ -271,11 +271,11 @@
       </div>
     </div>
 
-    <div id="four-hundred" class="wealth-wrapper four-hundred">
+    <div id="top200" class="wealth-wrapper top200">
       <div class="wealth ruler">
         <div class="wealth-header">
           <h2 class="wealth-title i18n-400-richest-americans" id="top200-title">200 richest people worldwide ($8.81 trillion)</h2>
-          <div class="counter" id="four-hundred-counter"></div>
+            <div class="counter" id="top200-counter"></div>
         </div>
         <div class="key">
           <span class="i18n-USD80-million scale-label">$80 million</span>
@@ -287,10 +287,10 @@
           </div>
         </div>
 
-        <div id="four-hundred-counter-start" class="people-wrapper-outer four-hundred-people infobox infobox-close">
+        <div id="top200-counter-start" class="people-wrapper-outer top200-people infobox infobox-close">
           <div class="people-wrapper center-sticky">
             <div class="people">
-              <div class="people-label bubble i18n-400-people">400 people</div>
+              <div class="people-label bubble i18n-400-people">200 people</div>
             </div>
           </div>
         </div>
@@ -324,11 +324,11 @@
         </div>
 
         <div class="infobox text-infobox infobox-half">
-          <h2 class="title what-could-we-do i18n-what-could-we-do">What could we do with 3% of this money?</h2>
+          <h2 class="title what-could-we-do i18n-what-could-we-do" id="heading-pct-small">What could we do with 3% of this money?</h2>
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart three-percent">
+          <div class="piechart three-percent" id="piechart-testing">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -342,12 +342,12 @@
 
         <div class="infobox text-infobox infobox-close">
           <div class="title">
-            <p class="i18n-as-of-this-writing">As of this writing, testing in the United States falls far short of what is needed to re-open the economy. By some estimates, sufficiently ramping up testing to around 30 million tests per week would cost around <a href="https://www.cnbc.com/2020/04/21/coronavirus-tests-rockefeller-plan-would-screen-millions-for-covid-19.html" target="_blank">$100 billion total</a>, or about 3% of the wealth currently controlled by the 400 richest Americans.</p>
+            <p class="i18n-as-of-this-writing">As of this writing, testing in the United States falls far short of what is needed to re-open the economy. By some estimates, sufficiently ramping up testing to around 30 million tests per week would cost around <a href="https://www.cnbc.com/2020/04/21/coronavirus-tests-rockefeller-plan-would-screen-millions-for-covid-19.html" target="_blank">$100 billion total</a>, or about <span id="inline-pct-testing">3% of the wealth currently controlled by the 400 richest Americans</span>.</p>
           </div>
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart three-percent">
+          <div class="piechart three-percent" id="piechart-malaria">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -402,7 +402,7 @@
         <div class="infobox text-infobox infobox-close">
           <div class="title">
             <p class="i18n-all-of-these-deaths"><em>All</em> of these deaths are preventable. Treating and preventing malaria is a well understood science, universally practiced in the developed world.</p>
-            <p class="i18n-it-is-estimated"><a href="https://www.ncbi.nlm.nih.gov/pubmed/25551454" target="_blank">It is estimated</a> that malaria could be globally eradicated by 2030 for a cost around $1.84 per at-risk person per year, or around $100 billion total. This would be around 3% of the wealth currently possessed by the 400 richest Americans.</p>
+            <p class="i18n-it-is-estimated"><a href="https://www.ncbi.nlm.nih.gov/pubmed/25551454" target="_blank">It is estimated</a> that malaria could be globally eradicated by 2030 for a cost around $1.84 per at-risk person per year, or around $100 billion total. This would be around <span id="inline-pct-malaria">3% of the wealth currently possessed by the 400 richest Americans</span>.</p>
           </div>
         </div>
 
@@ -413,11 +413,11 @@
         </div>
 
         <div class="infobox text-infobox infobox-half">
-          <h2 class="title what-could-we-do i18n-what-could-we-do-with">What could we do with 5% of this money?</h2>
+          <h2 class="title what-could-we-do i18n-what-could-we-do-with" id="heading-pct-medium">What could we do with 5% of this money?</h2>
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart five-percent">
+          <div class="piechart five-percent" id="piechart-stimulus">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -454,7 +454,7 @@
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart five-percent">
+          <div class="piechart five-percent" id="piechart-poverty">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -481,7 +481,7 @@
 
         <div class="infobox text-infobox infobox-close">
           <div class="title">
-            <p class="i18n-every-single-person"><a href="https://www.census.gov/content/dam/Census/library/publications/2019/demo/p60-266.pdf" target="_blank">Every single person</a> in America could be lifted above the poverty line with a one-time cash subsidy of around $10,000 per impoverished family (and about $7,000 for impoverished individuals). The total cost would be $170 billion, a little over 5% of the wealth currently controlled by 400 individuals.</p>
+            <p class="i18n-every-single-person"><a href="https://www.census.gov/content/dam/Census/library/publications/2019/demo/p60-266.pdf" target="_blank">Every single person</a> in America could be lifted above the poverty line with a one-time cash subsidy of around $10,000 per impoverished family (and about $7,000 for impoverished individuals). The total cost would be $170 billion, <span id="inline-pct-poverty">a little over 5% of the wealth currently controlled by 400 individuals</span>.</p>
           </div>
         </div>
 
@@ -506,11 +506,11 @@
        </div>
 
        <div class="infobox text-infobox infobox-half">
-         <h2 class="title what-could-we-do i18n-what-could-we-do-with-6pct">What could we do with 6% of this money?</h2>
+         <h2 class="title what-could-we-do i18n-what-could-we-do-with-6pct" id="heading-pct-taxrefund">What could we do with 6% of this money?</h2>
        </div>
 
        <div class="infobox infobox-quarter flex">
-         <div class="piechart six-percent tiny">
+         <div class="piechart six-percent tiny" id="piechart-taxrefund">
            <svg class="piechart-outer" viewBox="0 0 32 32">
              <circle class="piechart-inner" r="16" cx="16" cy="16" />
            </svg>
@@ -529,11 +529,11 @@
        </div>
 
         <div class="infobox text-infobox infobox-half">
-          <h2 class="title what-could-we-do i18n-what-could-we-do-with-8pct">What could we do with 8% of this money?</h2>
+          <h2 class="title what-could-we-do i18n-what-could-we-do-with-8pct" id="heading-pct-cleanwater">What could we do with 8% of this money?</h2>
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart eight-percent tiny">
+          <div class="piechart eight-percent tiny" id="piechart-cleanwater">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -560,7 +560,7 @@
 
         <div class="infobox text-infobox infobox-close">
           <div class="title">
-            <p class="i18n-contaminated-water">Contaminated water is a major source of disease, including cholera, dysentery, and typhoid. <a href="https://www.who.int/news-room/fact-sheets/detail/drinking-water">It is estimated</a> that contaminated water kills about 829,000 people every year, making it one of the world's biggest killers. The cost to provide clean water and waste disposal for everyone on earth would be about <a href="https://www.who.int/water_sanitation_health/watandmacr3.pdf" target="_blank">$240 billion</a>, or 8% of the wealth controlled by the 400 richest Americans.</p>
+            <p class="i18n-contaminated-water">Contaminated water is a major source of disease, including cholera, dysentery, and typhoid. <a href="https://www.who.int/news-room/fact-sheets/detail/drinking-water">It is estimated</a> that contaminated water kills about 829,000 people every year, making it one of the world's biggest killers. The cost to provide clean water and waste disposal for everyone on earth would be about <a href="https://www.who.int/water_sanitation_health/watandmacr3.pdf" target="_blank">$240 billion</a>, or <span id="inline-pct-cleanwater">8% of the wealth controlled by the 400 richest Americans</span>.</p>
           </div>
         </div>
 
@@ -571,11 +571,11 @@
         </div>
 
         <div class="infobox text-infobox infobox-close">
-          <h2 class="title what-could-we-do i18n-what-could-we-do-with-40pct">What could we do with 40% of this money?</h2>
+          <h2 class="title what-could-we-do i18n-what-could-we-do-with-40pct" id="heading-pct-tenk">What could we do with 40% of this money?</h2>
         </div>
 
         <div class="infobox infobox-quarter flex">
-          <div class="piechart forty-percent tiny">
+          <div class="piechart forty-percent tiny" id="piechart-tenk">
             <svg class="piechart-outer" viewBox="0 0 32 32">
               <circle class="piechart-inner" r="16" cx="16" cy="16" />
             </svg>
@@ -589,7 +589,7 @@
 
         <div class="infobox text-infobox infobox-close">
           <div class="title i18n-there-are-about">
-            There are about 128 million households in the United States. To give each one $10,000 would cost $1.28 trillion, or about 43% of the wealth controlled by 400 Americans.
+            There are about 128 million households in the United States. To give each one $10,000 would cost $1.28 trillion, or <span id="inline-pct-tenk">about 43% of the wealth controlled by 400 Americans</span>.
           </div>
         </div>
 
@@ -601,7 +601,7 @@
         </div>
 
         <div class="infobox text-infobox infobox-close">
-          <h2 class="title what-could-we-do i18n-what-could-we-do-with-85pct">What could we do with 85% of this money?</h2>
+          <h2 class="title what-could-we-do i18n-what-could-we-do-with-85pct" id="heading-pct-all">What could we do with 85% of this money?</h2>
         </div>
 
         <div class="ninety-wrapper-outer infobox infobox-close">
@@ -614,7 +614,7 @@
 
         <div class="infobox text-infobox infobox-close">
           <div class="title i18n-these-programs-combined">
-            These programs combined would completely transform our world. By redistributing this wealth, millions of lives would be saved. Billions would be rescued from poverty and disease. By inconveniencing <em>just 400 people</em>, the entire human race could advance to a new, unprecedented level of development.
+            These programs combined would completely transform our world. By redistributing this wealth, millions of lives would be saved. Billions would be rescued from poverty and disease. By inconveniencing <em>just 200 people</em>, the entire human race could advance to a new, unprecedented level of development.
           </div>
         </div>
 

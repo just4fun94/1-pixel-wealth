@@ -1,10 +1,10 @@
-var bezos = document.getElementById('bezos');
-var bezos_counter = document.getElementById('bezos-counter');
-var bezosCounterStart = document.getElementById('bezos-counter-start');
+var richest = document.getElementById('richest');
+var richest_counter = document.getElementById('richest-counter');
+var richestCounterStart = document.getElementById('richest-counter-start');
 
-var four_hundred = document.getElementById('four-hundred');
-var four_hundred_counter = document.getElementById('four-hundred-counter');
-var four_hundred_counter_start = document.getElementById('four-hundred-counter-start');
+var top200 = document.getElementById('top200');
+var top200_counter = document.getElementById('top200-counter');
+var top200_counter_start = document.getElementById('top200-counter-start');
 
 var sixtyPercent = document.getElementById('sixty-percent');
 var sixtyPercentIndicator = document.getElementById('sixty-percent-indicator');
@@ -45,7 +45,7 @@ function applyDimensions(barWidth) {
   root.setProperty('--richest-h',              richestH   + 'px');
   root.setProperty('--top200-h',               top200H    + 'px');
   root.setProperty('--infobox-margin',         Math.round(6000  * scale) + 'px');
-  root.setProperty('--infobox-first-margin',   Math.round(30000 * scale) + 'px');
+  root.setProperty('--infobox-first-margin',   Math.round(15000 * scale) + 'px');
   root.setProperty('--infobox-half-margin',    Math.round(4000  * scale) + 'px');
   root.setProperty('--infobox-quarter-margin', Math.round(2000  * scale) + 'px');
   root.setProperty('--infobox-close-margin',   Math.round(500   * scale) + 'px');
@@ -53,6 +53,11 @@ function applyDimensions(barWidth) {
   var scaleText = formatCompactMoney(160 * barWidth * 1000);
   var scaleEls = document.querySelectorAll('.scale-label');
   for (var i = 0; i < scaleEls.length; i++) { scaleEls[i].textContent = scaleText; }
+  // update 'every 10 pixels' text
+  var pixelsEl = document.getElementById('pixels-value-text');
+  if (pixelsEl) {
+    pixelsEl.textContent = 'Every 10 pixels you scroll is ' + formatCompactMoney(barWidth * 10000) + '.';
+  }
 }
 
 function formatCompactMoney(n) {
@@ -99,6 +104,83 @@ function applyBillionaireData(data) {
     var dateStr = d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
     sourceEl.innerHTML = 'Wealth data: <a href="' + data.sourceUrl + '" target="_blank" rel="noreferrer">' + data.source + '</a> &mdash; last updated ' + dateStr;
   }
+
+  // Update pie chart percentages and related text — all values relative to top200WealthUsd
+  updateTop200Percentages();
+}
+
+// Fixed real-world program costs (USD)
+var COST_TESTING    = 100e9;           // $100B  – COVID testing
+var COST_MALARIA    = 100e9;           // $100B  – malaria eradication
+var COST_STIMULUS   = 128e6 * 1200;   // $153.6B – $1,200 per US household
+var COST_POVERTY    = 170e9;           // $170B  – lift Americans out of poverty
+var COST_TAX_REFUND = 200e9;          // $200B  – refund 2018 taxes < $80K
+var COST_CLEAN_WATER= 240e9;          // $240B  – clean water for all
+var COST_10K        = 128e6 * 10000;  // $1.28T – $10K per US household
+
+function fmtPct(n) {
+  if (n >= 10) return Math.round(n) + '%';
+  if (n >= 1)  return n.toFixed(1) + '%';
+  return n.toFixed(2) + '%';
+}
+
+function updateTop200Percentages() {
+  var total = top200WealthUsd;
+  var group = '200 richest people worldwide';
+
+  function pct(cost) { return cost / total * 100; }
+
+  var pTesting   = pct(COST_TESTING);
+  var pMalaria   = pct(COST_MALARIA);
+  var pStimulus  = pct(COST_STIMULUS);
+  var pPoverty   = pct(COST_POVERTY);
+  var pTaxRefund = pct(COST_TAX_REFUND);
+  var pCleanWater= pct(COST_CLEAN_WATER);
+  var p10K       = pct(COST_10K);
+  var pAll       = pTesting + pMalaria + pStimulus + pPoverty + pTaxRefund + pCleanWater + p10K;
+
+  // Helper: update a piechart element's label and SVG slice
+  function setPie(id, p) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var labelEl = el.querySelector('.label');
+    if (labelEl) labelEl.textContent = fmtPct(p);
+    var circle = el.querySelector('.piechart-inner');
+    if (circle) circle.style.strokeDasharray = p + ' 100';
+  }
+
+  // Helper: update a "What could we do with X%?" heading
+  function setHeading(id, p) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = 'What could we do with ' + fmtPct(p) + ' of this money?';
+  }
+
+  // Helper: update an inline percentage span with group name
+  function setInline(id, p) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = fmtPct(p) + ' of the wealth of the ' + group;
+  }
+
+  setPie('piechart-testing',   pTesting);
+  setPie('piechart-malaria',   pMalaria);
+  setPie('piechart-stimulus',  pStimulus);
+  setPie('piechart-poverty',   pPoverty);
+  setPie('piechart-taxrefund', pTaxRefund);
+  setPie('piechart-cleanwater',pCleanWater);
+  setPie('piechart-tenk',      p10K);
+
+  setHeading('heading-pct-small',     pTesting);   // covers testing + malaria (same cost)
+  setHeading('heading-pct-medium',    Math.max(pStimulus, pPoverty));
+  setHeading('heading-pct-taxrefund', pTaxRefund);
+  setHeading('heading-pct-cleanwater',pCleanWater);
+  setHeading('heading-pct-tenk',      p10K);
+  setHeading('heading-pct-all',       pAll);
+
+  setInline('inline-pct-testing',   pTesting);
+  setInline('inline-pct-malaria',   pMalaria);
+  setInline('inline-pct-poverty',   pPoverty);
+  setInline('inline-pct-cleanwater',pCleanWater);
+  setInline('inline-pct-tenk',      p10K);
 }
 
 // Fetch billionaires.json — tries local first, then parent dir (for /de/ page)
@@ -152,35 +234,35 @@ babies.addEventListener('scroll', function(){
 //Todo: stop executing once scrolled past
 function update_wealth_counter() {
   var scrollTop = window.scrollY || window.pageYOffset || 0;
-  if (bezos_viewable()) {
-    if (bezos_counter_viewable()) {
-      let wealth = (scrollTop - bezos.offsetTop + 175) * (currentBarWidth * 1000);
-      bezos_counter.innerHTML = (wealth < richestPersonWealthUsd) ? money.format(wealth) : money.format(richestPersonWealthUsd);
+  if (richest_viewable()) {
+    if (richest_counter_viewable()) {
+      let wealth = (scrollTop - richest.offsetTop + 175) * (currentBarWidth * 1000);
+      richest_counter.innerHTML = (wealth < richestPersonWealthUsd) ? money.format(wealth) : money.format(richestPersonWealthUsd);
     }
     else {
-      bezos_counter.innerHTML = '';
+      richest_counter.innerHTML = '';
     }
   }
-  else if (four_hundred_viewable()) {
-    if (four_hundred_counter_viewable()) {
-      let wealth = (scrollTop - four_hundred.offsetTop + 175) * (currentBarWidth * 1000);
-      four_hundred_counter.innerHTML = (wealth < top200WealthUsd) ? money.format(wealth) : money.format(top200WealthUsd);
+  else if (top200_viewable()) {
+    if (top200_counter_viewable()) {
+      let wealth = (scrollTop - top200.offsetTop + 175) * (currentBarWidth * 1000);
+      top200_counter.innerHTML = (wealth < top200WealthUsd) ? money.format(wealth) : money.format(top200WealthUsd);
     }
     else {
-      four_hundred_counter.innerHTML = '';
+      top200_counter.innerHTML = '';
     }
   }
-  function bezos_viewable() {
-    return scrollTop < bezos.offsetTop + bezos.offsetHeight + 100;
+  function richest_viewable() {
+    return scrollTop < richest.offsetTop + richest.offsetHeight + 100;
   }
-  function bezos_counter_viewable() {
-    return bezosCounterStart.offsetTop - scrollTop < (window.innerHeight);
+  function richest_counter_viewable() {
+    return richestCounterStart.offsetTop - scrollTop < (window.innerHeight);
   }
-  function four_hundred_viewable() {
-    return scrollTop < four_hundred.offsetTop + four_hundred.offsetHeight + 100;
+  function top200_viewable() {
+    return scrollTop < top200.offsetTop + top200.offsetHeight + 100;
   }
-  function four_hundred_counter_viewable() {
-    return four_hundred_counter_start.offsetTop - scrollTop < (window.innerHeight);
+  function top200_counter_viewable() {
+    return top200_counter_start.offsetTop - scrollTop < (window.innerHeight);
   }
 }
 function toggleZoom() {

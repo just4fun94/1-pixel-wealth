@@ -6,7 +6,7 @@ html {
 }
 body,
 html,
-.wealth-wrapper-outer
+.wealth-wrapper-outer,
 .wealth-row {
   min-height: 100%;
 }

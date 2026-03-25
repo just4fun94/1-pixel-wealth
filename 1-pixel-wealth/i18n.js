@@ -2,21 +2,21 @@ var main_div = document.getElementsByClassName("wealth-wrapper-outer")[0];
 var marker_start = "<!--i18n-start-->";
 var marker_end = "<!--i18n-end-->";
 
-var xhttp = new XMLHttpRequest();
-
-
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-        if (this.status == 200) {translate_page(this.response);}
-        if (this.status == 404) {main_div.innerHTML = "Error! Please try reloading the page.";}
-
-        main_div.style.display = 'block';
-    }
-}
-xhttp.open("GET", "../index.html"); //Get the english version
-xhttp.send();
-
 var translated_images = i18n_data.images || ["cares.svg","ninety.svg","plane.png","poverty.svg"];
+
+fetch("../index.html")
+  .then(function(response) {
+    if (!response.ok) throw new Error(response.status);
+    return response.text();
+  })
+  .then(function(text) {
+    translate_page(text);
+    main_div.style.display = 'block';
+  })
+  .catch(function() {
+    main_div.innerHTML = "Error! Please try reloading the page.";
+    main_div.style.display = 'block';
+  });
 
 function translate_page(response){
     response = response.substring(response.indexOf(marker_start),response.indexOf(marker_end)); //discard metadata

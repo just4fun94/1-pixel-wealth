@@ -189,8 +189,9 @@ h1 {
 .infobox .title {
   font-weight: normal;
   line-height: 1.4;
-  width: 96vw;
+  width: 90%;
   max-width: 600px;
+  text-align: center;
 }
 .infobox .title-square-wrapper .title {
   text-align: center;
@@ -203,7 +204,7 @@ h1 {
 @media (max-width: 450px) {
   .infobox .midtext,
   .infobox .title {
-    width: 90vw;
+    width: 85%;
   }
 }
 .infobox.year-veteran .title {
@@ -220,6 +221,8 @@ h1 {
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (max-width: 450px) {
   .infobox.line-chart .chart-outer {
@@ -311,7 +314,7 @@ h1 {
   margin-top: 5px;
 }
 .median {
-  height: 480px;
+  height: 200px;
   width: 100%;
 }
 .median .wealth{
@@ -333,13 +336,19 @@ h1 {
   background-color: #03A9F4;
 }
 .richest .wealth {
-  height: var(--richest-h, 278000px);
+  height: var(--richest-h);
   width: var(--bar-width, 500px);
   background-color: orange;
 }
 .top200 .wealth {
   margin-top: 100px;
   height: var(--top200-h, 5920000px);
+  width: var(--bar-width, 500px);
+  background-color: #03A9F4;
+}
+.all-billionaires .wealth {
+  margin-top: 100px;
+  height: var(--all-billionaires-h);
   width: var(--bar-width, 500px);
   background-color: #03A9F4;
 }
@@ -355,15 +364,16 @@ h1 {
   align-self: flex-end;
   margin-right: 35px;
   margin-left: 0;
-  width: 20px;
+  width: 25px;
   height: 160px;
+  flex-shrink: 0;
   background-image: url(img/scale-vert.svg);
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  background-position: right center;
+  background-size: 9px 160px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 .key > span {
@@ -372,7 +382,7 @@ h1 {
   transform: rotate(180deg);
   font-size: 11px;
   white-space: nowrap;
-  padding: 2px;
+  padding: 1px 0;
 }
 .richest .key > span {
   background-color: orange;
@@ -388,107 +398,6 @@ h1 {
   padding: 5px;
   min-width: 140px;
   background: transparent;
-}
-.lifetime .square {
-  width: 41.23px;
-  height: 41.23px;
-  background-color: blue;
-}
-.healthcare .square {
-  width: 4.96px;
-  height: 4.96px;
-  background-color: blue;
-}
-.amazon-year .square {
-  width: 5.4px;
-  height: 5.4px;
-  background-color: blue;
-}
-.year-veteran .square {
-  width: 400px;
-  height: 1186px;
-  background-color: #8BC34A;
-}
-.year-veteran .title {
-  width: auto;
-  padding: 10px;
-  max-width: 380px;
-  top: 0;
-  text-align: center;
-  box-sizing: border-box;
-}
-.year-veteran .square {
-  position: static;
-}
-.year-chemo {
-  height: auto;
-  width: 100%;
-}
-.year-chemo .square {
-  width: 400px;
-  height: 22500px;
-  background-color: #03A9F4;
-  border: 5px dashed #0078af;
-  box-sizing: border-box;
-}
-.year-chemo .square .title {
-  padding: 10px;
-  position: sticky;
-  top: 1px;
-  display: block;
-  width: auto;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-  text-align: center;
-}
-.year-chemo .key {
-  top: auto;
-  background-image: url(img/scale.svg);
-  width: 170px;
-  height: auto;
-}
-.year-chemo .key > span {
-  background-color: #03A9F4;
-  writing-mode: horizontal-tb;
-  transform: none;
-  font-size: inherit;
-}
-.celebrities {
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  align-items: center;
-}
-.beyonce .square {
-  width: 350px;
-  height: 1142px;
-  background-color: #406994;
-}
-.goldman .square {
-  width: 223px;
-  height: 223px;
-  background-color: #64A8F0;
-}
-.tim-cook .square {
-  width: 350px;
-  height: 1785px;
-  background-color: #71889e;
-}
-.doctor .square {
-  width: 81.8px;
-  height: 81.8px;
-  background-color: #0661b9;
-}
-.lawyer .square {
-  width: 63.2px;
-  height: 63.2px;
-  background-color: #00478a;
-}
-.hedgefund .square {
-  width: 289.8px;
-  height: 289.8px;
-  background-color: #9daebf;
 }
 .line-chart .chart-outer {
   width: 720px;
@@ -883,4 +792,253 @@ h1 {
 }
 .all-of-them .title {
   width: 370px;
+}
+
+/* ─── Scroll duration classes (mapped from story.json scrollDuration) ─── */
+.infobox-duration-long {
+  height: calc(var(--infobox-margin, 6000px) * 3);
+}
+.infobox-duration-medium {
+  height: calc(var(--infobox-margin, 6000px) * 2);
+}
+.infobox-duration-short {
+  height: calc(var(--infobox-half-margin, 4000px) * 2);
+}
+.infobox-first-margin {
+  margin-top: var(--infobox-first-margin, 30000px);
+  height: calc(var(--infobox-first-margin, 15000px) * 2);
+}
+
+/* ─── All-billionaires bar segments ─── */
+.bar-segment {
+  display: block;
+}
+.all-billionaires .wealth-header,
+.all-billionaires .key {
+  z-index: 3;
+}
+.all-billionaires .infobox {
+  height: auto;
+  min-height: 100vh;
+}
+
+/* ─── Cause cards ─── */
+.cause-card {
+  max-width: 560px;
+  width: 96vw;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.cause-pie {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.cause-pie .piechart-outer {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-38deg);
+  background: yellowgreen;
+  border-radius: 50%;
+}
+.cause-pie .piechart-inner {
+  fill: yellowgreen;
+  stroke: #655;
+  stroke-width: 32;
+}
+.pie-label {
+  position: absolute;
+  left: 130px;
+  top: 42px;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.cause-title {
+  margin: 8px 0 4px;
+  font-size: 22px;
+}
+.cause-cost {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 8px;
+}
+.cause-desc {
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.cause-desc a {
+  color: #1565C0;
+}
+.cause-deaths {
+  background: #fff3f3;
+  border-left: 4px solid #d32f2f;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.pocket-change {
+  background: #f3f8ff;
+  border-left: 4px solid #1565C0;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 14px;
+  font-style: italic;
+}
+.cause-source {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+.cause-source a {
+  color: #888;
+}
+
+/* ─── Summary card / side-by-side chart ─── */
+.summary-card {
+  max-width: 600px;
+  width: 96vw;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.side-by-side-chart {
+  margin: 16px 0;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  font-size: 13px;
+}
+.bar-label {
+  width: 160px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-track {
+  flex: 1;
+  height: 18px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: #03A9F4;
+  border-radius: 3px;
+  min-width: 2px;
+}
+.bar-amount {
+  width: 70px;
+  flex-shrink: 0;
+  padding-left: 8px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.summary-total {
+  margin: 12px 0;
+  font-size: 16px;
+  padding: 8px 0;
+  border-top: 2px solid #333;
+}
+.summary-pie {
+  margin-top: 12px;
+}
+.summary-pie .piechart-outer {
+  width: 180px;
+  height: 180px;
+}
+
+/* ─── Death ticker ─── */
+.death-ticker {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 100;
+  background: rgba(30, 30, 30, 0.92);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 13px;
+  max-width: 280px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(6px);
+}
+.death-ticker-label {
+  display: block;
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ticker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 2px 0;
+}
+.ticker-count {
+  font-weight: bold;
+  font-size: 15px;
+  color: #ff6b6b;
+  margin-right: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.ticker-label {
+  color: #ccc;
+}
+.ticker-total {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 4px;
+  padding-top: 6px;
+  font-weight: bold;
+}
+.ticker-total .ticker-count {
+  font-size: 17px;
+  color: #ff4444;
+}
+.ticker-total .ticker-label {
+  color: #fff;
+}
+
+@media (max-width: 450px) {
+  .cause-card,
+  .summary-card {
+    transform: none;
+    top: 10px;
+  }
+  .bar-label {
+    width: 90px;
+    font-size: 11px;
+  }
+  .bar-amount {
+    width: 55px;
+    font-size: 11px;
+  }
+  .death-ticker {
+    bottom: 4px;
+    right: 4px;
+    font-size: 11px;
+    max-width: 200px;
+  }
+  .ticker-count {
+    font-size: 13px;
+  }
+  .pie-label {
+    left: 100px;
+    top: 35px;
+    font-size: 16px;
+  }
+  .cause-pie .piechart-outer {
+    width: 90px;
+    height: 90px;
+  }
 }

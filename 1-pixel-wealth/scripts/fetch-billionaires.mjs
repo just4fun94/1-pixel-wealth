@@ -6,8 +6,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const outputPath = resolve(__dirname, "../data/billionaires.json");
 
-const FORBES_ENDPOINT =
+const FORBES_TOP200_ENDPOINT =
   "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json?limit=200";
+const FORBES_ALL_ENDPOINT =
+  "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json?limit=10000";
 const FETCH_TIMEOUT_MS = 30_000;
 const MAX_RETRIES = 2;
 const RETRY_DELAY_MS = 3_000;
@@ -44,7 +46,7 @@ async function fetchWithRetry(url, options, retries = MAX_RETRIES) {
 }
 
 async function fetchTop200() {
-  const response = await fetchWithRetry(FORBES_ENDPOINT, {
+  const response = await fetchWithRetry(FORBES_TOP200_ENDPOINT, {
     headers: {
       "User-Agent": "1-pixel-wealth-global/1.0",
       Accept: "application/json",
@@ -96,9 +98,45 @@ async function fetchTop200() {
 
 async function main() {
   const data = await fetchTop200();
+
+  // Fetch all billionaires in one request (limit=10000 is well above current count)
+  // Filter to only those with finalWorth >= 1000 ($1B) since the API may include lower
+  process.stdout.write("Fetching all billionaires…\n");
+  const allResponse = await fetchWithRetry(FORBES_ALL_ENDPOINT, {
+    headers: {
+      "User-Agent": "1-pixel-wealth-global/1.0",
+      Accept: "application/json",
+    },
+  });
+  const allPayload = await allResponse.json();
+
+  if (
+    !allPayload ||
+    typeof allPayload !== "object" ||
+    !allPayload.personList ||
+    !Array.isArray(allPayload.personList.personsLists)
+  ) {
+    throw new Error(
+      "Unexpected Forbes response structure for all billionaires"
+    );
+  }
+
+  const allList = allPayload.personList.personsLists.filter(
+    (p) => (p.finalWorth || 0) >= 1000 // finalWorth is in millions; 1000M = $1B
+  );
+  const allBillionairesCount = allList.length;
+  const allBillionairesTotalUsd = allList.reduce(
+    (sum, item) => sum + toUsd(item.finalWorth),
+    0
+  );
+  process.stdout.write(`  found ${allBillionairesCount} billionaires (filtered from ${allPayload.personList.personsLists.length} entries)\n`);
+
+  data.allBillionairesCount = allBillionairesCount;
+  data.allBillionairesTotalUsd = allBillionairesTotalUsd;
+
   await writeFile(outputPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
   process.stdout.write(
-    `Updated ${outputPath} with ${data.count} people and ${data.totalWealthUsd} USD total wealth.\n`
+    `Updated ${outputPath} with ${data.count} top people, ${allBillionairesCount} total billionaires, and $${allBillionairesTotalUsd} total wealth.\n`
   );
 }
 

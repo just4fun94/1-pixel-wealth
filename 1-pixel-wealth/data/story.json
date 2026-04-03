@@ -1,0 +1,340 @@
+{
+  "$schema": "story-schema.json",
+  "version": 1,
+  "meta": {
+    "title": "Wealth, shown to scale",
+    "description": "Global wealth inequality visualized at true scale.",
+    "medianHouseholdIncomeUsd": 63179,
+    "lifetimeEarningsUsd": 1700000
+  },
+  "bars": [
+    {
+      "id": "richest",
+      "label": "Wealth of {richestName}",
+      "color": "#FF9800",
+      "wealthKey": "richestPersonWealthUsd",
+      "ruler": true
+    },
+    {
+      "id": "allBillionaires",
+      "label": "All the world's billionaires ({allBillionairesFormatted})",
+      "color": "#03A9F4",
+      "wealthKey": "allBillionairesTotalUsd",
+      "ruler": true
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "intro",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.02,
+      "title": "{richestName}'s wealth is quite literally unimaginable.",
+      "i18nKey": "i18n-intro-text"
+    },
+    {
+      "id": "scale-perspective",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.05,
+      "title": "We rarely see wealth inequality represented to scale. This is part of the reason people <a href=\"https://www.ncbi.nlm.nih.gov/pubmed/26162108\" target=\"_blank\" rel=\"noopener noreferrer\">consistently underestimate</a> the relative wealth of the super rich.",
+      "i18nKey": "i18n-we-rarely-see-wealth"
+    },
+    {
+      "id": "scroll-rate",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.08,
+      "title": "Every 10 pixels you scroll is {scrollRate}.",
+      "i18nKey": "i18n-every-10-pixels",
+      "dynamic": "scrollRate"
+    },
+    {
+      "id": "coming-up",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.20,
+      "title": "OK, we're coming up on the end now.",
+      "i18nKey": "i18n-ok-were-coming-up"
+    },
+    {
+      "id": "just-kidding",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.25,
+      "title": "Lol, just kidding, we're only about \u00bc of the way. Keep scrolling though, there's more to see.",
+      "i18nKey": "i18n-lol-just-kidding",
+      "counterStart": true
+    },
+    {
+      "id": "lifetime-earnings",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.35,
+      "title": "All the money you will earn in your entire lifetime (about $1.7 million)",
+      "amountUsd": 1700000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-all-the-money-you"
+    },
+    {
+      "id": "familiar-things",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.50,
+      "title": "Let's put this wealth in perspective by comparing it to some familiar things.",
+      "i18nKey": "i18n-lets-put-this-wealth"
+    },
+    {
+      "id": "richest-daily",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.65,
+      "title": "{richestName} earns approximately {richestDailyIncome} per day.",
+      "i18nKey": "i18n-richest-daily-income",
+      "dynamic": "richestDaily"
+    },
+    {
+      "id": "no-single-human",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.85,
+      "title": "No single human needs or deserves this much wealth.",
+      "i18nKey": "i18n-no-single-human"
+    },
+    {
+      "id": "all-billionaires-intro",
+      "bar": "allBillionaires",
+      "type": "text",
+      "scrollDuration": 1.5,
+      "title": "The wealth of the richest person may seem staggering, but it is a drop in the ocean compared to the combined wealth of all {billionaireCount} billionaires on Earth: {allBillionairesFormatted}.",
+      "i18nKey": "i18n-all-billionaires-intro"
+    },
+    {
+      "id": "trillion-scale",
+      "bar": "allBillionaires",
+      "type": "text",
+      "scrollDuration": 1.0,
+      "title": "A trillion dollars is such a large figure, that you might as well say \"eleventy gajillion zillion dollars.\" So let's try to understand this by looking at what could be accomplished with fractions of this wealth.",
+      "i18nKey": "i18n-a-trillion-dollars"
+    },
+    {
+      "id": "end-hunger",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.5,
+      "title": "End World Hunger",
+      "costUsd": 93000000000,
+      "description": "The UN estimates it would cost <a href=\"https://www.wfp.org/stories/wfp-chief-calls-billionaires-step-help-solve-global-hunger-crisis\" target=\"_blank\" rel=\"noopener noreferrer\">$93 billion</a> to end world hunger by 2030. About 828 million people go to bed hungry every single night.",
+      "deathsPerYear": 2370000,
+      "deathLabel": "hunger-related deaths",
+      "sourceUrl": "https://www.wfp.org/",
+      "sourceName": "World Food Programme",
+      "i18nKey": "i18n-end-hunger",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "end-extreme-poverty",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.5,
+      "title": "End Extreme Poverty",
+      "costUsd": 318000000000,
+      "description": "The World Bank estimates that closing the poverty gap — lifting every person above $2.15/day — would cost roughly <a href=\"https://www.worldbank.org/en/topic/poverty\" target=\"_blank\" rel=\"noopener noreferrer\">$318 billion per year</a>. About 700 million people live in extreme poverty today.",
+      "sourceUrl": "https://www.worldbank.org/en/topic/poverty",
+      "sourceName": "World Bank",
+      "i18nKey": "i18n-end-extreme-poverty",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "vaccinate-children",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "Vaccinate Every Child on Earth",
+      "costUsd": 10000000000,
+      "description": "<a href=\"https://www.gavi.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Gavi</a> estimates it would cost around $10 billion to immunize every child in the world against the leading causes of childhood death.",
+      "deathsPerYear": 1500000,
+      "deathLabel": "vaccine-preventable child deaths",
+      "sourceUrl": "https://www.gavi.org/",
+      "sourceName": "Gavi",
+      "i18nKey": "i18n-vaccinate-children",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "clean-water",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.5,
+      "title": "Clean Water & Sanitation for Everyone",
+      "costUsd": 114000000000,
+      "description": "Around <a href=\"https://www.who.int/news-room/detail/12-07-2017-2-1-billion-people-lack-safe-drinking-water-at-home-more-than-twice-as-many-lack-safe-sanitation\" target=\"_blank\" rel=\"noopener noreferrer\">2.2 billion people</a> lack access to safe drinking water. Contaminated water kills about 829,000 people every year. The WHO estimates it would cost <a href=\"https://www.who.int/publications/i/item/9789241515191\" target=\"_blank\" rel=\"noopener noreferrer\">$114 billion</a> to provide universal clean water and sanitation.",
+      "deathsPerYear": 829000,
+      "deathLabel": "deaths from unsafe water",
+      "sourceUrl": "https://www.who.int/publications/i/item/9789241515191",
+      "sourceName": "WHO",
+      "i18nKey": "i18n-clean-water",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "end-malaria",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.5,
+      "title": "Eradicate Malaria",
+      "costUsd": 6000000000,
+      "description": "Malaria is one of the worst infectious diseases ever visited on mankind, killing more people than almost any other. About two-thirds of malaria deaths each year are <strong>children under five</strong>. <a href=\"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)60988-5/fulltext\" target=\"_blank\" rel=\"noopener noreferrer\">The Lancet</a> estimates that eradication is achievable for around $6 billion per year.",
+      "deathsPerYear": 619000,
+      "deathLabel": "malaria deaths",
+      "sourceUrl": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)60988-5/fulltext",
+      "sourceName": "The Lancet",
+      "i18nKey": "i18n-end-malaria",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "end-tuberculosis",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "End Tuberculosis",
+      "costUsd": 22000000000,
+      "description": "Tuberculosis kills about 1.3 million people each year — more than any other single infectious agent. The <a href=\"https://www.stoptb.org/global-plan-to-end-tb\" target=\"_blank\" rel=\"noopener noreferrer\">Stop TB Partnership</a> estimates that the global funding gap to end TB is $22 billion per year.",
+      "deathsPerYear": 1300000,
+      "deathLabel": "TB deaths",
+      "sourceUrl": "https://www.stoptb.org/global-plan-to-end-tb",
+      "sourceName": "Stop TB Partnership",
+      "i18nKey": "i18n-end-tuberculosis",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "universal-education",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "Universal Primary & Secondary Education",
+      "costUsd": 97000000000,
+      "description": "About 244 million children and youth are out of school worldwide. <a href=\"https://www.unesco.org/gem-report/en\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO</a> estimates the annual funding gap to achieve universal education by 2030 is $97 billion.",
+      "sourceUrl": "https://www.unesco.org/gem-report/en",
+      "sourceName": "UNESCO",
+      "i18nKey": "i18n-universal-education",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "ocean-cleanup",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "Clean Up the Oceans",
+      "costUsd": 7500000000,
+      "description": "An estimated 8 million metric tons of plastic enter the oceans every year. Bold cleanup and prevention initiatives like <a href=\"https://theoceancleanup.com/\" target=\"_blank\" rel=\"noopener noreferrer\">The Ocean Cleanup</a> estimate that comprehensive global cleanup could be achieved for $4–7.5 billion.",
+      "sourceUrl": "https://theoceancleanup.com/",
+      "sourceName": "The Ocean Cleanup",
+      "i18nKey": "i18n-ocean-cleanup",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "climate-adaptation",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.5,
+      "title": "Climate Adaptation for Developing Nations",
+      "costUsd": 340000000000,
+      "description": "The <a href=\"https://www.unep.org/resources/adaptation-gap-report\" target=\"_blank\" rel=\"noopener noreferrer\">UNEP Adaptation Gap Report</a> estimates that developing countries need $310–365 billion per year for climate adaptation. Floods, droughts, and extreme weather already kill thousands and displace millions annually.",
+      "sourceUrl": "https://www.unep.org/resources/adaptation-gap-report",
+      "sourceName": "UNEP",
+      "i18nKey": "i18n-climate-adaptation",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "humanitarian-aid",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "Fund All Global Humanitarian Aid",
+      "costUsd": 33000000000,
+      "description": "The <a href=\"https://www.unocha.org/global-humanitarian-overview\" target=\"_blank\" rel=\"noopener noreferrer\">UN OCHA</a> requested $33 billion in 2024 for all global humanitarian needs — wars, famines, natural disasters. The entire ask could be covered as a rounding error on billionaire wealth.",
+      "sourceUrl": "https://www.unocha.org/global-humanitarian-overview",
+      "sourceName": "UN OCHA",
+      "i18nKey": "i18n-humanitarian-aid",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "ecosystem-restoration",
+      "bar": "allBillionaires",
+      "type": "cause",
+      "scrollDuration": 1.0,
+      "title": "Global Ecosystem Restoration",
+      "costUsd": 200000000000,
+      "description": "The <a href=\"https://www.decadeonrestoration.org/\" target=\"_blank\" rel=\"noopener noreferrer\">UN Decade on Ecosystem Restoration</a> estimates that restoring degraded land, forests, and marine ecosystems globally would require about $200 billion per year. This investment would boost biodiversity, food security, and carbon capture.",
+      "sourceUrl": "https://www.decadeonrestoration.org/",
+      "sourceName": "UNEP",
+      "i18nKey": "i18n-ecosystem-restoration",
+      "pocketChange": {
+        "median": "If you earned $65,000 a year, this would be like spending {amount}."
+      }
+    },
+    {
+      "id": "all-combined",
+      "bar": "allBillionaires",
+      "type": "summary",
+      "scrollDuration": 2.0,
+      "title": "All of the Above — Combined",
+      "description": "Every cause listed above — ending hunger, eradicating poverty, universal education, clean water, eliminating malaria and TB, climate adaptation, ocean cleanup, humanitarian aid, and ecosystem restoration — could be funded <strong>simultaneously</strong>.",
+      "includeIds": ["end-hunger", "end-extreme-poverty", "vaccinate-children", "clean-water", "end-malaria", "end-tuberculosis", "universal-education", "ocean-cleanup", "climate-adaptation", "humanitarian-aid", "ecosystem-restoration"],
+      "i18nKey": "i18n-all-combined"
+    },
+    {
+      "id": "still-billionaires",
+      "bar": "allBillionaires",
+      "type": "text",
+      "scrollDuration": 2.0,
+      "title": "These programs combined would completely transform our world. By redistributing this wealth, millions of lives would be saved. Billions would be rescued from poverty and disease.",
+      "i18nKey": "i18n-these-programs-combined"
+    },
+    {
+      "id": "still-rich",
+      "bar": "allBillionaires",
+      "type": "text",
+      "scrollDuration": 1.5,
+      "title": "And every single one of them would <em>still</em> be a billionaire afterwards.",
+      "i18nKey": "i18n-and-all-of-them"
+    },
+    {
+      "id": "call-to-action",
+      "bar": "allBillionaires",
+      "type": "text",
+      "scrollDuration": 2.0,
+      "title": "We cannot accept this level of inequality any longer.",
+      "i18nKey": "i18n-we-cannot-accept"
+    }
+  ],
+  "deathTicker": {
+    "enabled": true,
+    "sources": [
+      { "causeId": "end-hunger", "perYear": 2370000, "label": "hunger" },
+      { "causeId": "clean-water", "perYear": 829000, "label": "unsafe water" },
+      { "causeId": "end-malaria", "perYear": 619000, "label": "malaria" },
+      { "causeId": "end-tuberculosis", "perYear": 1300000, "label": "tuberculosis" },
+      { "causeId": "vaccinate-children", "perYear": 1500000, "label": "vaccine-preventable diseases" }
+    ]
+  }
+}

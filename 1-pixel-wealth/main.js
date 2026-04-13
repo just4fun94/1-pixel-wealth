@@ -3,6 +3,20 @@ const MAX_SEGMENT_HEIGHT = 10_000_000; // px — safe under browser ~16.7M limit
 const MAX_SAFE_HEIGHT = 33_000_000; // px — warn above this (browser rendering limit)
 const RULER_TICK_PX = 160; // matches ruler-vert.svg background-size height
 const COUNTER_SCROLL_OFFSET = 175; // px offset for wealth counter (accounts for header height)
+const DOLLARS_PER_PIXEL = 1000; // scale: 1 pixel = $1,000
+const SCROLL_RATE_PX = 10; // pixels per scroll unit for rate display
+const BAR_VISIBILITY_OFFSET_PX = 200; // min px into bar before counter shows
+const MAX_SQUARE_WIDTH_FRACTION = 0.8; // max square comparison width relative to bar
+const MAX_BAR_SEGMENTS = 100; // explicit upper bound for segmentation loop
+const FETCH_TIMEOUT_MS = 15_000; // timeout for data fetch requests
+const TICKER_UPDATE_MS = 1000; // death ticker refresh interval
+const MEDIAN_HOUSEHOLD_INCOME_USD = 65_000; // fallback median income for pocket-change calc
+
+// Infobox margin fractions relative to richest bar height
+const MARGIN_FIRST = 0.054;
+const MARGIN_DEFAULT = 0.0216;
+const MARGIN_HALF = 0.0144;
+const MARGIN_CLOSE = 0.0018;
 
 const thousand = new Intl.NumberFormat('en-US');
 const money = new Intl.NumberFormat('en-US', {
@@ -33,9 +47,7 @@ let richestName = 'the richest person';
 let billionaireCount = 3372; // fallback — updated from billionaires.json
 let story = null;
 let pageOpenedAt = Date.now();
-
-// Bar references (populated after data loads)
-const bars = {};
+let tickerIntervalId = null;
 
 // ─── Layout Computation ─────────────────────────────────────────────
 function computeBarWidth() {
@@ -46,9 +58,9 @@ function computeBarWidth() {
 function applyDimensions(barWidth) {
   currentBarWidth = barWidth;
   const billionBarWidth = Math.min(barWidth, 1000);
-  const billionH = Math.round(1e9 / (billionBarWidth * 1000));
-  const richestH = Math.round(richestPersonWealthUsd / (barWidth * 1000));
-  const allBillionairesH = Math.round(allBillionairesTotalUsd / (barWidth * 1000));
+  const billionH = Math.round(1e9 / (billionBarWidth * DOLLARS_PER_PIXEL));
+  const richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
+  const allBillionairesH = Math.round(allBillionairesTotalUsd / (barWidth * DOLLARS_PER_PIXEL));
 
   // Warn if heights exceed safe browser rendering limits
   if (allBillionairesH > MAX_SAFE_HEIGHT) {
@@ -62,14 +74,13 @@ function applyDimensions(barWidth) {
   root.setProperty('--billion-h', billionH + 'px');
   root.setProperty('--richest-h', richestH + 'px');
   root.setProperty('--all-billionaires-h', allBillionairesH + 'px');
-  root.setProperty('--infobox-margin', Math.round(richestH * 0.0216) + 'px');
-  root.setProperty('--infobox-first-margin', Math.round(richestH * 0.054) + 'px');
-  root.setProperty('--infobox-half-margin', Math.round(richestH * 0.0144) + 'px');
-  root.setProperty('--infobox-quarter-margin', Math.round(richestH * 0.0072) + 'px');
-  root.setProperty('--infobox-close-margin', Math.round(richestH * 0.0018) + 'px');
+  root.setProperty('--infobox-margin', Math.round(richestH * MARGIN_DEFAULT) + 'px');
+  root.setProperty('--infobox-first-margin', Math.round(richestH * MARGIN_FIRST) + 'px');
+  root.setProperty('--infobox-half-margin', Math.round(richestH * MARGIN_HALF) + 'px');
+  root.setProperty('--infobox-close-margin', Math.round(richestH * MARGIN_CLOSE) + 'px');
 
   // Scale labels — each ruler tick is RULER_TICK_PX tall
-  const scaleText = formatCompactMoney(RULER_TICK_PX * barWidth * 1000);
+  const scaleText = formatCompactMoney(RULER_TICK_PX * barWidth * DOLLARS_PER_PIXEL);
   const scaleEls = document.querySelectorAll('.scale-label');
   for (let i = 0; i < scaleEls.length; i++) { scaleEls[i].textContent = scaleText; }
 
@@ -89,15 +100,15 @@ function segmentBar(barId, totalHeight, barWidth) {
   if (totalHeight <= MAX_SEGMENT_HEIGHT) {
     // Single bar — just set height
     el.style.height = totalHeight + 'px';
-    bars[barId] = { el: el, totalHeight: totalHeight, segments: [{ el: el, start: 0, height: totalHeight }] };
     return;
   }
 
   // Multiple segments
-  const segments = [];
   let remaining = totalHeight;
   let offset = 0;
-  while (remaining > 0) {
+  let iterations = 0;
+  while (remaining > 0 && iterations < MAX_BAR_SEGMENTS) {
+    iterations++;
     const h = Math.min(remaining, MAX_SEGMENT_HEIGHT);
     const seg = document.createElement('div');
     seg.className = 'bar-segment';
@@ -112,14 +123,13 @@ function segmentBar(barId, totalHeight, barWidth) {
       seg.style.backgroundSize = '30px 160px';
     }
     el.appendChild(seg);
-    segments.push({ el: seg, start: offset, height: h });
     offset += h;
     remaining -= h;
   }
 
-  // The main element's natural height = header + key + comparisons + segments
-  // Don't override its height; segments provide the height
-  bars[barId] = { el: el, totalHeight: totalHeight, segments: segments };
+  if (iterations >= MAX_BAR_SEGMENTS) {
+    console.warn('Bar segmentation hit iteration cap (' + MAX_BAR_SEGMENTS + '). Remaining: ' + remaining + 'px');
+  }
 }
 
 // ─── Scroll Counter ─────────────────────────────────────────────────
@@ -140,7 +150,7 @@ function updateBarCounter(barId, maxWealth, scrollTop, vh) {
   const barBot = barTop + el.offsetHeight;
 
   // Only show counter when bar is in view
-  if (scrollTop + vh < barTop + 200 || scrollTop > barBot) {
+  if (scrollTop + vh < barTop + BAR_VISIBILITY_OFFSET_PX || scrollTop > barBot) {
     counterEl.textContent = '';
     return;
   }
@@ -157,25 +167,27 @@ function updateBarCounter(barId, maxWealth, scrollTop, vh) {
     }
   }
 
-  const wealth = Math.max(0, (scrollTop - barTop + COUNTER_SCROLL_OFFSET) * (currentBarWidth * 1000));
+  const wealth = Math.max(0, (scrollTop - barTop + COUNTER_SCROLL_OFFSET) * (currentBarWidth * DOLLARS_PER_PIXEL));
   counterEl.textContent = (wealth < maxWealth) ? money.format(wealth) : money.format(maxWealth);
 }
 
 // ─── Data Loading ───────────────────────────────────────────────────
 function loadData() {
-  const billionairePromise = fetch('data/billionaires.json')
+  const fetchOptions = { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) };
+
+  const billionairePromise = fetch('data/billionaires.json', fetchOptions)
     .then(function(r) {
       if (r.ok) return r.json();
-      return fetch('../data/billionaires.json').then(function(r2) {
+      return fetch('../data/billionaires.json', fetchOptions).then(function(r2) {
         if (r2.ok) return r2.json();
         throw new Error('billionaires.json not found');
       });
     });
 
-  const storyPromise = fetch('data/story.json')
+  const storyPromise = fetch('data/story.json', fetchOptions)
     .then(function(r) {
       if (r.ok) return r.json();
-      return fetch('../data/story.json').then(function(r2) {
+      return fetch('../data/story.json', fetchOptions).then(function(r2) {
         if (r2.ok) return r2.json();
         throw new Error('story.json not found');
       });
@@ -189,6 +201,13 @@ function loadData() {
 }
 
 function applyData(billionaireData, storyData) {
+  if (!billionaireData || !Array.isArray(billionaireData.people) || billionaireData.people.length === 0) {
+    throw new Error('Invalid billionaire data: expected object with non-empty people array');
+  }
+  if (!storyData || !Array.isArray(storyData.comparisons)) {
+    throw new Error('Invalid story data: expected object with comparisons array');
+  }
+
   story = storyData;
   richestPersonWealthUsd = Number(billionaireData.people[0].wealthUsd);
   richestName = billionaireData.people[0].name;
@@ -238,7 +257,7 @@ function renderComparisons() {
   const templateVars = {
     richestName: richestName,
     richestDailyIncome: formatCompactMoney(Math.round(richestPersonWealthUsd / 365)),
-    scrollRate: formatCompactMoney(currentBarWidth * 10000),
+    scrollRate: formatCompactMoney(currentBarWidth * DOLLARS_PER_PIXEL * SCROLL_RATE_PX),
     allBillionairesFormatted: formatCompactMoney(allBillionairesTotalUsd),
     billionaireCount: thousand.format(billionaireCount),
   };
@@ -321,7 +340,7 @@ function updateAllComparisonPositions() {
 
 function updateDynamicText() {
   var scrollRateEls = document.querySelectorAll('[data-dynamic="scrollRate"]');
-  var newRate = formatCompactMoney(currentBarWidth * 10000);
+  var newRate = formatCompactMoney(currentBarWidth * DOLLARS_PER_PIXEL * SCROLL_RATE_PX);
   for (var i = 0; i < scrollRateEls.length; i++) {
     var titleEl = scrollRateEls[i].querySelector('.title');
     if (titleEl && story) {
@@ -337,6 +356,113 @@ function updateDynamicText() {
   }
 }
 
+function renderTextContent(comp, vars) {
+  return '<div class="title">' + interpolate(comp.title, vars) + '</div>';
+}
+
+function renderSquareContent(comp, vars) {
+  const maxSide = currentBarWidth * MAX_SQUARE_WIDTH_FRACTION;
+  const side = Math.min(Math.sqrt(comp.amountUsd / DOLLARS_PER_PIXEL), maxSide);
+  return '<div class="title-square-wrapper">' +
+    '<div class="title">' + interpolate(comp.title, vars) + '</div>' +
+    '<div class="square" style="width:' + side.toFixed(1) + 'px;height:' + side.toFixed(1) + 'px;background-color:' + (comp.squareColor || '#2196F3') + ';margin:0 auto"></div>' +
+  '</div>';
+}
+
+function renderPieChartHtml(pct, pctStr) {
+  return '<div class="cause-pie">' +
+    '<svg class="piechart-outer" viewBox="0 0 32 32">' +
+      '<circle class="piechart-inner" r="16" cx="16" cy="16" style="stroke-dasharray:' + pct.toFixed(2) + ' 100"/>' +
+    '</svg>' +
+    '<span class="pie-label">' + pctStr + '</span>' +
+  '</div>';
+}
+
+function renderCauseContent(comp, totalWealth, vars) {
+  const pct = (comp.costUsd / totalWealth) * 100;
+  const pctStr = fmtPct(pct);
+  const medianIncome = (story.meta && story.meta.medianHouseholdIncomeUsd) || MEDIAN_HOUSEHOLD_INCOME_USD;
+  const ratio = comp.costUsd / totalWealth;
+  const pocketAmount = money.format(Math.round(ratio * medianIncome));
+
+  let html = '<div class="cause-card">';
+  html += renderPieChartHtml(pct, pctStr);
+
+  html += '<div class="cause-content">' +
+    '<h3 class="cause-title">' + comp.title + '</h3>' +
+    '<div class="cause-cost">' + formatCompactMoney(comp.costUsd) + ' \u2014 ' + pctStr + ' of all billionaire wealth</div>' +
+    '<p class="cause-desc">' + comp.description + '</p>';
+
+  if (comp.deathsPerYear) {
+    const perDay = Math.round(comp.deathsPerYear / 365);
+    html += '<div class="cause-deaths">' +
+      '<strong>' + thousand.format(perDay) + '</strong> ' + (comp.deathLabel || 'deaths') + ' per day \u2014 ' +
+      '<strong>' + thousand.format(comp.deathsPerYear) + '</strong> per year' +
+    '</div>';
+  }
+
+  if (comp.pocketChange) {
+    html += '<div class="pocket-change">' +
+      interpolate(comp.pocketChange.median, Object.assign({}, vars, { amount: pocketAmount })) +
+    '</div>';
+  }
+
+  if (comp.sourceUrl) {
+    html += '<div class="cause-source">Source: <a href="' + comp.sourceUrl + '" target="_blank" rel="noopener noreferrer">' + (comp.sourceName || 'Link') + '</a></div>';
+  }
+
+  html += '</div></div>';
+  return html;
+}
+
+function renderBarChartHtml(items, totalCost) {
+  let html = '<div class="side-by-side-chart">';
+  items.forEach(function(item) {
+    const widthPct = Math.max(1, (item.cost / totalCost) * 100);
+    html += '<div class="bar-row">' +
+      '<span class="bar-label">' + item.title + '</span>' +
+      '<div class="bar-track"><div class="bar-fill" style="width:' + widthPct.toFixed(1) + '%"></div></div>' +
+      '<span class="bar-amount">' + formatCompactMoney(item.cost) + '</span>' +
+    '</div>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderSummaryContent(comp, totalWealth) {
+  const ids = comp.includeIds || [];
+  let totalCost = 0;
+  const items = [];
+  if (story.comparisons) {
+    story.comparisons.forEach(function(c) {
+      if (ids.indexOf(c.id) !== -1 && c.costUsd) {
+        totalCost += c.costUsd;
+        items.push({ title: c.title, cost: c.costUsd });
+      }
+    });
+  }
+  const summaryPct = (totalCost / totalWealth) * 100;
+
+  let html = '<div class="summary-card">';
+  html += '<h3 class="cause-title">' + comp.title + '</h3>';
+  html += '<p class="cause-desc">' + comp.description + '</p>';
+  html += renderBarChartHtml(items, totalCost);
+
+  html += '<div class="summary-total">' +
+    '<strong>Total: ' + formatCompactMoney(totalCost) + '</strong> \u2014 ' + fmtPct(summaryPct) + ' of all billionaire wealth' +
+  '</div>';
+
+  html += '<div class="cause-pie summary-pie">' +
+    '<svg class="piechart-outer" viewBox="0 0 32 32">' +
+      '<circle class="piechart-inner" r="16" cx="16" cy="16" style="stroke-dasharray:' + summaryPct.toFixed(2) + ' 100"/>' +
+    '</svg>' +
+    '<span class="pie-label">' + fmtPct(summaryPct) + '</span>' +
+  '</div>';
+
+  html += '</div>';
+  return html;
+}
+
 function createComparisonElement(comp, totalWealth, vars, isFirst) {
   const wrapper = document.createElement('div');
   const durationClass = getDurationClass(comp.scrollDuration || 1.0);
@@ -350,120 +476,23 @@ function createComparisonElement(comp, totalWealth, vars, isFirst) {
     case 'text':
       wrapper.classList.add('text-infobox');
       if (comp.dynamic) wrapper.setAttribute('data-dynamic', comp.dynamic);
-      wrapper.innerHTML = '<div class="title">' + interpolate(comp.title, vars) + '</div>';
+      wrapper.innerHTML = renderTextContent(comp, vars);
       break;
-
     case 'square':
       wrapper.classList.add('text-infobox');
-      const maxSide = currentBarWidth * 0.8;
-      const side = Math.min(Math.sqrt(comp.amountUsd / 1000), maxSide);
-      wrapper.innerHTML =
-        '<div class="title-square-wrapper">' +
-          '<div class="title">' + interpolate(comp.title, vars) + '</div>' +
-          '<div class="square" style="width:' + side.toFixed(1) + 'px;height:' + side.toFixed(1) + 'px;background-color:' + (comp.squareColor || '#2196F3') + ';margin:0 auto"></div>' +
-        '</div>';
+      wrapper.innerHTML = renderSquareContent(comp, vars);
       break;
-
     case 'cause':
       wrapper.classList.add('text-infobox', 'cause-infobox');
-      const pct = (comp.costUsd / totalWealth) * 100;
-      const pctStr = fmtPct(pct);
-
-      // Pocket change computation
-      const medianIncome = (story.meta && story.meta.medianHouseholdIncomeUsd) || 65000;
-      const ratio = comp.costUsd / totalWealth;
-      const pocketAmount = money.format(Math.round(ratio * medianIncome));
-
-      let html = '<div class="cause-card">';
-
-      // Pie chart
-      html += '<div class="cause-pie">' +
-        '<svg class="piechart-outer" viewBox="0 0 32 32">' +
-          '<circle class="piechart-inner" r="16" cx="16" cy="16" style="stroke-dasharray:' + pct.toFixed(2) + ' 100"/>' +
-        '</svg>' +
-        '<span class="pie-label">' + pctStr + '</span>' +
-      '</div>';
-
-      // Content
-      html += '<div class="cause-content">' +
-        '<h3 class="cause-title">' + comp.title + '</h3>' +
-        '<div class="cause-cost">' + formatCompactMoney(comp.costUsd) + ' — ' + pctStr + ' of all billionaire wealth</div>' +
-        '<p class="cause-desc">' + comp.description + '</p>';
-
-      // Death stat
-      if (comp.deathsPerYear) {
-        const perDay = Math.round(comp.deathsPerYear / 365);
-        html += '<div class="cause-deaths">' +
-          '<strong>' + thousand.format(perDay) + '</strong> ' + (comp.deathLabel || 'deaths') + ' per day — ' +
-          '<strong>' + thousand.format(comp.deathsPerYear) + '</strong> per year' +
-        '</div>';
-      }
-
-      // Pocket change
-      if (comp.pocketChange) {
-        html += '<div class="pocket-change">' +
-          interpolate(comp.pocketChange.median, Object.assign({}, vars, { amount: pocketAmount })) +
-        '</div>';
-      }
-
-      // Source
-      if (comp.sourceUrl) {
-        html += '<div class="cause-source">Source: <a href="' + comp.sourceUrl + '" target="_blank" rel="noopener noreferrer">' + (comp.sourceName || 'Link') + '</a></div>';
-      }
-
-      html += '</div></div>';
-      wrapper.innerHTML = html;
+      wrapper.innerHTML = renderCauseContent(comp, totalWealth, vars);
       break;
-
     case 'summary':
       wrapper.classList.add('text-infobox', 'summary-infobox');
-      const ids = comp.includeIds || [];
-      let totalCost = 0;
-      const items = [];
-      if (story.comparisons) {
-        story.comparisons.forEach(function(c) {
-          if (ids.indexOf(c.id) !== -1 && c.costUsd) {
-            totalCost += c.costUsd;
-            items.push({ title: c.title, cost: c.costUsd });
-          }
-        });
-      }
-      const summaryPct = (totalCost / totalWealth) * 100;
-      let shtml = '<div class="summary-card">';
-      shtml += '<h3 class="cause-title">' + comp.title + '</h3>';
-      shtml += '<p class="cause-desc">' + comp.description + '</p>';
-
-      // Side-by-side bar chart
-      shtml += '<div class="side-by-side-chart">';
-      items.forEach(function(item) {
-        const widthPct = Math.max(1, (item.cost / totalCost) * 100);
-        shtml += '<div class="bar-row">' +
-          '<span class="bar-label">' + item.title + '</span>' +
-          '<div class="bar-track"><div class="bar-fill" style="width:' + widthPct.toFixed(1) + '%"></div></div>' +
-          '<span class="bar-amount">' + formatCompactMoney(item.cost) + '</span>' +
-        '</div>';
-      });
-      shtml += '</div>';
-
-      shtml += '<div class="summary-total">' +
-        '<strong>Total: ' + formatCompactMoney(totalCost) + '</strong> — ' + fmtPct(summaryPct) + ' of all billionaire wealth' +
-      '</div>';
-
-      // Pie chart for combined
-      shtml += '<div class="cause-pie summary-pie">' +
-        '<svg class="piechart-outer" viewBox="0 0 32 32">' +
-          '<circle class="piechart-inner" r="16" cx="16" cy="16" style="stroke-dasharray:' + summaryPct.toFixed(2) + ' 100"/>' +
-        '</svg>' +
-        '<span class="pie-label">' + fmtPct(summaryPct) + '</span>' +
-      '</div>';
-
-      shtml += '</div>';
-      wrapper.innerHTML = shtml;
+      wrapper.innerHTML = renderSummaryContent(comp, totalWealth);
       break;
-
     default:
       wrapper.classList.add('text-infobox');
-      wrapper.innerHTML = '<div class="title">' + interpolate(comp.title || '', vars) + '</div>';
+      wrapper.innerHTML = renderTextContent(comp, vars);
   }
 
   return wrapper;
@@ -493,10 +522,6 @@ function startDeathTicker(config) {
       perSecond: s.perYear / (365.25 * 24 * 3600),
     };
   });
-
-  // Compute total per-second rate
-  var totalPerSecond = 0;
-  rates.forEach(function(r) { totalPerSecond += r.perSecond; });
 
   // Keep ticker hidden until user scrolls to the first cause comparison
   var tickerVisible = false;
@@ -536,7 +561,8 @@ function startDeathTicker(config) {
   }
 
   update();
-  setInterval(update, 1000);
+  if (tickerIntervalId) clearInterval(tickerIntervalId);
+  tickerIntervalId = setInterval(update, TICKER_UPDATE_MS);
 }
 
 // ─── Init ───────────────────────────────────────────────────────────

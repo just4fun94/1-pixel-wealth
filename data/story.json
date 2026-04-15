@@ -3,8 +3,8 @@
   "meta": {
     "title": "Wealth, shown to scale",
     "description": "Global wealth inequality visualized at true scale.",
-    "medianHouseholdIncomeUsd": 63179,
-    "lifetimeEarningsUsd": 1700000
+    "medianHouseholdIncomeUsd": 63180,
+    "lifetimeEarningsUsd": 2500000
   },
   "bars": [
     {
@@ -36,14 +36,14 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.05,
-      "title": "We rarely see wealth inequality represented to scale. This is part of the reason people <a href=\"https://www.ncbi.nlm.nih.gov/pubmed/26162108\" target=\"_blank\" rel=\"noopener noreferrer\">consistently underestimate</a> the relative wealth of the super rich.",
+      "title": "We rarely see wealth inequality represented to scale. This is part of the reason people <a href=\"https://academic.oup.com/pnasnexus/article/3/9/pgae333/7756543\" target=\"_blank\" rel=\"noopener noreferrer\">consistently underestimate</a> the relative wealth of the super rich.",
       "i18nKey": "i18n-we-rarely-see-wealth"
     },
     {
       "id": "scroll-rate",
       "bar": "richest",
       "type": "text",
-      "positionFraction": 0.08,
+      "positionFraction": 0.075,
       "title": "Every 10 pixels you scroll is {scrollRate}.",
       "i18nKey": "i18n-every-10-pixels",
       "dynamic": "scrollRate"
@@ -52,7 +52,7 @@
       "id": "coming-up",
       "bar": "richest",
       "type": "text",
-      "positionFraction": 0.20,
+      "positionFraction": 0.10,
       "title": "OK, we're coming up on the end now.",
       "i18nKey": "i18n-ok-were-coming-up"
     },
@@ -60,76 +60,338 @@
       "id": "just-kidding",
       "bar": "richest",
       "type": "text",
-      "positionFraction": 0.25,
-      "title": "Lol, just kidding, we're only about \u00bc of the way. Keep scrolling though, there's more to see.",
+      "positionFraction": 0.125,
+      "title": "Lol, just kidding, we're only about \u215B of the way. Keep scrolling though, there's more to see.",
       "i18nKey": "i18n-lol-just-kidding",
       "counterStart": true
-    },
-    {
-      "id": "lifetime-earnings",
-      "bar": "richest",
-      "type": "square",
-      "positionFraction": 0.35,
-      "title": "All the money you will earn in your entire lifetime (about $1.7 million)",
-      "amountUsd": 1700000,
-      "squareColor": "#2196F3",
-      "i18nKey": "i18n-all-the-money-you"
     },
     {
       "id": "familiar-things",
       "bar": "richest",
       "type": "text",
-      "positionFraction": 0.50,
+      "positionFraction": 0.15,
       "title": "Let's put this wealth in perspective by comparing it to some familiar things.",
       "i18nKey": "i18n-lets-put-this-wealth"
     },
     {
-      "id": "homeless-veterans",
+      "id": "yearly-earnings-american",
       "bar": "richest",
       "type": "square",
-      "positionFraction": 0.52,
-      "title": "Annual cost to house every homeless veteran",
-      "amountUsd": 20000000000,
-      "squareColor": "#4CAF50"
+      "positionFraction": 0.175,
+      "title": "Yearly income of the median American (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$63,180 </a>)",
+      "amountUsd": 63180,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-yearly-earnings-american"
     },
     {
-      "id": "richest-daily",
+      "id": "seat-belt",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.20,
+      "title": "How much Elon Musk makes while buckling his seatbelt (4 seconds, <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$63,420 </a>)",
+      "amountUsd": 63420,
+      "squareColor": "#00E676",
+      "i18nKey": "i18n-seat-belt"
+    },
+    {
+      "id": "average-cost-house",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.225,
+      "title": "The average cost of a house in the United States (<a href=\"https://fred.stlouisfed.org/series/MSPUS\" target=\"_blank\" rel=\"noopener noreferrer\"> $405,300 </a>)",
+      "amountUsd": 405300,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-average-cost-house"
+    },
+    {
+      "id": "instant-coffee",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.25,
+      "title": "How much Elon Musk makes in the time it takes to make a cup of instant coffee (1 minute, <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$951,000 </a>)",
+      "amountUsd": 951000,
+      "squareColor": "#00E676",
+      "i18nKey": "i18n-instant-coffee"
+    },
+    {
+      "id": "lifetime-earnings-american",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.275,
+      "title": "All the money the median American will earn in their entire lifetime (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$2.5 million</a>)",
+      "amountUsd": 2500000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-lifetime-earnings-american"
+    },
+    {
+      "id": "lifetime-earnings-poorest-half",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.30,
+      "title": "For the poorest half of humanity — 2.8 billion adults — average income is just <a href=\"https://wir2026.wid.world/insight/global-economic-inequity/\" target=\"_blank\" rel=\"noopener noreferrer\"> $5,100 per year</a>, or about $200,000 in a lifetime.",
+      "amountUsd": 200000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-lifetime-earnings-poorest-half"
+    },
+    {
+      "id": "even-the-fortunes-of-the-wealthy",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.325,
+      "title": "Even the fortunes of the wealthy and very rich people are dwarfed by the incomprehensible wealth of the 0.0001%.",
+      "i18nKey": "i18n-even-the-fortunes-of-the-wealthy"
+    },
+    {
+      "id": "lifetime-earnings-lawyer",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.35,
+      "title": "Lifetime earnings of a US lawyer (on average <a href=\"https://www.bls.gov/ooh/legal/lawyers.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$6 million </a>)",
+      "amountUsd": 6000000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-lifetime-earnings-lawyer"
+    },
+    {
+      "id": "lifetime-earnings-doctor",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.375,
+      "title": "Lifetime earnings of a US doctor (on average <a href=\"https://www.medrxiv.org/content/10.1101/2025.08.19.25333972v1.full\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$6.5 million </a>)",
+      "amountUsd": 6500000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-lifetime-earnings-doctor"
+    },
+    {
+      "id": "estimated-wealth-ryan-gosling",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.40,
+      "title": "Estimated wealth of Ryan Gosling (<a href=\"https://www.celebritynetworth.com/richest-celebrities/actors/ryan-gosling-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$70 million </a>)",
+      "amountUsd": 70000000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-estimated-wealth-ryan-gosling"
+    },
+    {
+      "id": "movie-barbie",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.425,
+      "title": "How much Elon Musk makes while watching a movie starring Ryan Gosling (Barbie, 114 minutes, <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$108 million </a>)",
+      "amountUsd": 108000000,
+      "squareColor": "#00E676",
+      "i18nKey": "i18n-movie-barbie"
+    },
+    {
+      "id": "estimated-wealth-david-solomon",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.45,
+      "title": "Estimated wealth of Goldman Sachs CEO David Solomon (<a href=\"https://www.celebritynetworth.com/richest-businessmen/wall-street/david-solomon-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$400 million </a>)",
+      "amountUsd": 400000000,
+      "squareColor": "#2196F3",
+      "i18nKey": "i18n-estimated-wealth-david-solomon"
+    },
+    {
+      "id": "every-night-while-sleeping",
+      "bar": "richest",
+      "type": "square",
+      "positionFraction": 0.475,
+      "title": "How much Elon Musk makes every night while he is sleeping (8 hours, <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$456 million </a>)",
+      "amountUsd": 456000000,
+      "squareColor": "#00E676",
+      "i18nKey": "i18n-every-night-while-sleeping"
+    },
+    {
+      "id": "oppose-inequality-policies",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.50,
+      "title": "These people may see themselves as fabulously rich, and often oppose policies aimed at reducing inequality",
+      "i18nKey": "i18n-oppose-inequality-policies"
+    },
+    {
+      "id": "gulf-between-super-rich",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.525,
+      "title": "But many have not fully grasped the enormous gulf between themselves and the super rich.",
+      "i18nKey": "i18n-gulf-between-super-rich"
+    },
+    {
+      "id": "elon-musk-daily-income",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.55,
+      "title": "Elon Musk could've spend $1 billion every single day in 2025 and his wealth still would've grown by <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$370 million </a> each day.",
+      "i18nKey": "i18n-elon-musk-daily-income"
+    },
+    {
+      "id": "elon-musk-2025-income",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.575,
+      "title": "His wealth increased by <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$500 billion </a> in 2025 alone, which equals the <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> entire annual GDP of Denmark </a>.",
+      "i18nKey": "i18n-elon-musk-2025-income"
+    },
+    {
+      "id": "wealth-counter-message",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.60,
+      "title": "While you've been scrolling through this, Elon Musk's wealth has increased by approximately <strong><span id=\"wealth-counter\">$0</span></strong>.",
+      "i18nKey": "i18n-wealth-counter-message",
+      "dynamic": "wealthCounter"
+    },
+    {
+      "id": "richest-wealth-larger-than-gdp",
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.65,
-      "title": "{richestName} earns approximately {richestDailyIncome} per day.",
-      "i18nKey": "i18n-richest-daily-income",
+      "title": "{richestName}'s wealth is larger than the entire annual GDP of all but <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> 22 countries </a>.",
+      "i18nKey": "i18n-richest-wealth-larger-than-gdp",
       "dynamic": "richestDaily"
+    },
+    {
+      "id": "jesus-christ-spending",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.675,
+      "title": "If he would've spent $1 million every single day since the birth of Jesus Christ, he'd still have ~$100 billion left. (assuming his wealth wouldn't have grown at all)",
+      "i18nKey": "i18n-jesus-christ-spending"
+    },
+    {
+      "id": "how-long-to-earn-richest-wealth",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.70,
+      "title": "The average American would have to work for over 14 million years to earn this much money.",
+      "i18nKey": "i18n-how-long-to-earn-richest-wealth"
+    },
+    {
+      "id": "first-humans",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.725,
+      "title": "~300,000 years ago the first humans (<a href=\"https://en.wikipedia.org/wiki/Human\" target=\"_blank\" rel=\"noopener noreferrer\"> Homo Sapiens </a>) emerged in Africa.",
+      "i18nKey": "i18n-first-humans"
+    },
+    {
+      "id": "first-humans-comparison",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.75,
+      "title": "So the average American would have to work ~50 times longer than our species has existed to earn Elon Musk's current wealth.",
+      "i18nKey": "i18n-first-humans-comparison"
+    },
+    {
+      "id": "wealth-in-bills",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.775,
+      "title": "If you would lay out Elon Musk's wealth in $100 bills, it would stretch to the moon and back ~1.7 times.",
+      "i18nKey": "i18n-wealth-in-bills"
+    },
+    {
+      "id": "wealth-absurdity",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.80,
+      "title": "Ok, I think we've established by now how absurd this kind of wealth is.",
+      "i18nKey": "i18n-wealth-absurdity"
+    },
+    {
+      "id": "but-does-it-matter",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.825,
+      "title": "But does that matter? Isn't this just how capitalism works?",
+      "i18nKey": "i18n-but-does-it-matter"
+    },
+    {
+      "id": "reason-to-change",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.85,
+      "title": "Well yes. And maybe that's a reason to change it. Consider this: Elon Musk's wealth isn't just sitting in his bank account.",
+      "i18nKey": "i18n-reason-to-change"
+    },
+    {
+      "id": "money-equals-power",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.875,
+      "title": "At this scale, wealth isn't just money. It's power — over what gets built, who gets elected, and which stories get told.",
+      "i18nKey": "i18n-money-equals-power"
+    },
+    {
+      "id": "twitter-acquisition",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.90,
+      "title": "Just one example: In 2022 Musk bought Twitter for $44 billion  (5% of his current wealth) and reshaped what billions of people see, read and believe.",
+      "i18nKey": "i18n-twitter-acquisition"
+    },
+    {
+      "id": "alternative-world",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.925,
+      "title": "We can have a world in which wealthy people exist, without handing nearly all money to the super rich.",
+      "i18nKey": "i18n-alternative-world"
     },
     {
       "id": "no-single-human",
       "bar": "richest",
       "type": "text",
-      "positionFraction": 0.85,
+      "positionFraction": 0.95,
       "title": "No single human needs or deserves this much wealth.",
       "i18nKey": "i18n-no-single-human"
+    },
+    {
+      "id": "richest-not-only-one",
+      "bar": "richest",
+      "type": "text",
+      "positionFraction": 0.975,
+      "title": "But Elon Musk is not the only one with such an absurd level of wealth that it's really not comprehensible anymore.",
+      "i18nKey": "i18n-richest-not-only-one"
     },
     {
       "id": "all-billionaires-intro",
       "bar": "allBillionaires",
       "type": "text",
-      "scrollDuration": 1.5,
-      "title": "The wealth of the richest person may seem staggering, but it is a drop in the ocean compared to the combined wealth of all {billionaireCount} billionaires on Earth: {allBillionairesFormatted}.",
+      "positionFraction": 0.00001,
+      "title": "The wealth of Elon Musk may seem staggering, but it is a drop in the ocean compared to the combined wealth of all <a href=\"https://www.forbes.com/billionaires/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~{billionaireCount} billionaires on Earth</a>: {allBillionairesFormatted}.",
       "i18nKey": "i18n-all-billionaires-intro"
     },
     {
       "id": "trillion-scale",
       "bar": "allBillionaires",
       "type": "text",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.0005,
       "title": "A trillion dollars is such a large figure, that you might as well say \"eleventy gajillion zillion dollars.\" So let's try to understand this by looking at what could be accomplished with fractions of this wealth.",
       "i18nKey": "i18n-a-trillion-dollars"
+    },
+    {
+      "id": "billionaires-number",
+      "bar": "allBillionaires",
+      "type": "text",
+      "positionFraction": 0.001,
+      "title": "As we proceed, try to keep in mind: all of this wealth is controlled by a group so small, that they could fit in a single mid-sized concert hall.",
+      "i18nKey": "i18n-billionaires-number"
+    },
+    {
+      "id": "billionaires-concert-hall",
+      "bar": "allBillionaires",
+      "type": "text",
+      "positionFraction": 0.0015,
+      "title": "Visual of Eventim Apollo.",
+      "i18nKey": "i18n-billionaires-concert-hall"
     },
     {
       "id": "end-hunger",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.003,
       "title": "End World Hunger",
       "costUsd": 93000000000,
       "description": "The UN estimates it would cost <a href=\"https://www.wfp.org/stories/wfp-chief-calls-billionaires-step-help-solve-global-hunger-crisis\" target=\"_blank\" rel=\"noopener noreferrer\">$93 billion</a> to end world hunger by 2030. About 828 million people go to bed hungry every single night.",
@@ -146,7 +408,7 @@
       "id": "end-extreme-poverty",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.004,
       "title": "End Extreme Poverty",
       "costUsd": 318000000000,
       "description": "The World Bank estimates that closing the poverty gap — lifting every person above $2.15/day — would cost roughly <a href=\"https://www.worldbank.org/en/topic/poverty\" target=\"_blank\" rel=\"noopener noreferrer\">$318 billion per year</a>. About 700 million people live in extreme poverty today.",
@@ -161,7 +423,7 @@
       "id": "vaccinate-children",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.005,
       "title": "Vaccinate Every Child on Earth",
       "costUsd": 10000000000,
       "description": "<a href=\"https://www.gavi.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Gavi</a> estimates it would cost around $10 billion to immunize every child in the world against the leading causes of childhood death.",
@@ -178,7 +440,7 @@
       "id": "clean-water",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.006,
       "title": "Clean Water & Sanitation for Everyone",
       "costUsd": 114000000000,
       "description": "Around <a href=\"https://www.who.int/news-room/detail/12-07-2017-2-1-billion-people-lack-safe-drinking-water-at-home-more-than-twice-as-many-lack-safe-sanitation\" target=\"_blank\" rel=\"noopener noreferrer\">2.2 billion people</a> lack access to safe drinking water. Contaminated water kills about 829,000 people every year. The WHO estimates it would cost <a href=\"https://www.who.int/publications/i/item/9789241515191\" target=\"_blank\" rel=\"noopener noreferrer\">$114 billion</a> to provide universal clean water and sanitation.",
@@ -195,7 +457,7 @@
       "id": "end-malaria",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.007,
       "title": "Eradicate Malaria",
       "costUsd": 6000000000,
       "description": "Malaria is one of the worst infectious diseases ever visited on mankind, killing more people than almost any other. About two-thirds of malaria deaths each year are <strong>children under five</strong>. <a href=\"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)60988-5/fulltext\" target=\"_blank\" rel=\"noopener noreferrer\">The Lancet</a> estimates that eradication is achievable for around $6 billion per year.",
@@ -212,7 +474,7 @@
       "id": "end-tuberculosis",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.008,
       "title": "End Tuberculosis",
       "costUsd": 22000000000,
       "description": "Tuberculosis kills about 1.3 million people each year — more than any other single infectious agent. The <a href=\"https://www.stoptb.org/global-plan-to-end-tb\" target=\"_blank\" rel=\"noopener noreferrer\">Stop TB Partnership</a> estimates that the global funding gap to end TB is $22 billion per year.",
@@ -229,7 +491,7 @@
       "id": "universal-education",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.009,
       "title": "Universal Primary & Secondary Education",
       "costUsd": 97000000000,
       "description": "About 244 million children and youth are out of school worldwide. <a href=\"https://www.unesco.org/gem-report/en\" target=\"_blank\" rel=\"noopener noreferrer\">UNESCO</a> estimates the annual funding gap to achieve universal education by 2030 is $97 billion.",
@@ -244,7 +506,7 @@
       "id": "ocean-cleanup",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.010,
       "title": "Clean Up the Oceans",
       "costUsd": 7500000000,
       "description": "An estimated 8 million metric tons of plastic enter the oceans every year. Bold cleanup and prevention initiatives like <a href=\"https://theoceancleanup.com/\" target=\"_blank\" rel=\"noopener noreferrer\">The Ocean Cleanup</a> estimate that comprehensive global cleanup could be achieved for $4–7.5 billion.",
@@ -259,7 +521,7 @@
       "id": "climate-adaptation",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.011,
       "title": "Climate Adaptation for Developing Nations",
       "costUsd": 340000000000,
       "description": "The <a href=\"https://www.unep.org/resources/adaptation-gap-report\" target=\"_blank\" rel=\"noopener noreferrer\">UNEP Adaptation Gap Report</a> estimates that developing countries need $310–365 billion per year for climate adaptation. Floods, droughts, and extreme weather already kill thousands and displace millions annually.",
@@ -274,7 +536,7 @@
       "id": "humanitarian-aid",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.012,
       "title": "Fund All Global Humanitarian Aid",
       "costUsd": 33000000000,
       "description": "The <a href=\"https://www.unocha.org/global-humanitarian-overview\" target=\"_blank\" rel=\"noopener noreferrer\">UN OCHA</a> requested $33 billion in 2024 for all global humanitarian needs — wars, famines, natural disasters. The entire ask could be covered as a rounding error on billionaire wealth.",
@@ -289,7 +551,7 @@
       "id": "ecosystem-restoration",
       "bar": "allBillionaires",
       "type": "cause",
-      "scrollDuration": 1.0,
+      "positionFraction": 0.013,
       "title": "Global Ecosystem Restoration",
       "costUsd": 200000000000,
       "description": "The <a href=\"https://www.decadeonrestoration.org/\" target=\"_blank\" rel=\"noopener noreferrer\">UN Decade on Ecosystem Restoration</a> estimates that restoring degraded land, forests, and marine ecosystems globally would require about $200 billion per year. This investment would boost biodiversity, food security, and carbon capture.",
@@ -304,7 +566,7 @@
       "id": "all-combined",
       "bar": "allBillionaires",
       "type": "summary",
-      "scrollDuration": 2.0,
+      "positionFraction": 0.014,
       "title": "All of the Above — Combined",
       "description": "Every cause listed above — ending hunger, eradicating poverty, universal education, clean water, eliminating malaria and TB, climate adaptation, ocean cleanup, humanitarian aid, and ecosystem restoration — could be funded <strong>simultaneously</strong>.",
       "includeIds": ["end-hunger", "end-extreme-poverty", "vaccinate-children", "clean-water", "end-malaria", "end-tuberculosis", "universal-education", "ocean-cleanup", "climate-adaptation", "humanitarian-aid", "ecosystem-restoration"],
@@ -314,7 +576,7 @@
       "id": "still-billionaires",
       "bar": "allBillionaires",
       "type": "text",
-      "scrollDuration": 2.0,
+      "positionFraction": 0.015,
       "title": "These programs combined would completely transform our world. By redistributing this wealth, millions of lives would be saved. Billions would be rescued from poverty and disease.",
       "i18nKey": "i18n-these-programs-combined"
     },
@@ -322,7 +584,7 @@
       "id": "still-rich",
       "bar": "allBillionaires",
       "type": "text",
-      "scrollDuration": 1.5,
+      "positionFraction": 0.016,
       "title": "And every single one of them would <em>still</em> be a billionaire afterwards.",
       "i18nKey": "i18n-and-all-of-them"
     },
@@ -330,7 +592,7 @@
       "id": "call-to-action",
       "bar": "allBillionaires",
       "type": "text",
-      "scrollDuration": 2.0,
+      "positionFraction": 0.017,
       "title": "We cannot accept this level of inequality any longer.",
       "i18nKey": "i18n-we-cannot-accept"
     }

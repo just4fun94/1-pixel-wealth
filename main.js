@@ -13,7 +13,9 @@ const MIN_COMPARISON_GAP_VH = 1.5; // minimum viewports of scroll between compar
 const MAX_BAR_SEGMENTS = 100; // explicit upper bound for segmentation loop
 const FETCH_TIMEOUT_MS = 15_000; // timeout for data fetch requests
 const TICKER_UPDATE_MS = 1000; // death ticker refresh interval
-const MEDIAN_HOUSEHOLD_INCOME_USD = 65_000; // fallback median income for pocket-change calc
+const WEALTH_COUNTER_ANNUAL_USD = 500_000_000_000; // $500B/year for wealth counter
+const WEALTH_COUNTER_PER_SECOND = WEALTH_COUNTER_ANNUAL_USD / (365.25 * 24 * 3600);
+const MEDIAN_HOUSEHOLD_INCOME_USD = 63_180; // fallback median income for pocket-change calc
 
 // Infobox margin fractions relative to richest bar height
 const MARGIN_FIRST = 0.054;
@@ -44,10 +46,10 @@ function fmtPct(n) {
 
 // ─── Globals ────────────────────────────────────────────────────────
 let currentBarWidth = 500;
-let richestPersonWealthUsd = 813_000_000_000; // fallback — updated from billionaires.json
-let allBillionairesTotalUsd = 19_100_000_000_000; // fallback — updated from billionaires.json
+let richestPersonWealthUsd = 839_000_000_000; // fallback — updated from billionaires.json
+let allBillionairesTotalUsd = 20_100_000_000_000; // fallback — updated from billionaires.json
 let richestName = 'the richest person';
-let billionaireCount = 3372; // fallback — updated from billionaires.json
+let billionaireCount = 3428; // fallback — updated from billionaires.json
 let story = null;
 let pageOpenedAt = Date.now();
 let tickerIntervalId = null;
@@ -247,6 +249,9 @@ function applyData(billionaireData, storyData) {
   // Start death ticker
   if (story.deathTicker && story.deathTicker.enabled) {
     startDeathTicker(story.deathTicker);
+  } else {
+    // Ensure wealth counter still updates without death ticker
+    setInterval(updateWealthCounter, TICKER_UPDATE_MS);
   }
 }
 
@@ -352,6 +357,26 @@ function updateRectSizes() {
     const dims = computeRectDimensions(amountUsd);
     rects[i].style.width = dims.width.toFixed(1) + 'px';
     rects[i].style.height = dims.height.toFixed(1) + 'px';
+
+    const wrapper = rects[i].closest('.comparison-rect-wrapper');
+    if (!wrapper) continue;
+    const label = wrapper.querySelector('.comparison-rect-label');
+    const sizeClass = getRectSizeClass(dims);
+    wrapper.classList.remove('comparison-rect-large', 'comparison-rect-medium');
+
+    if (sizeClass === 'small') {
+      // Label belongs outside rect, as a sibling before it
+      if (label && label.parentElement === rects[i]) {
+        wrapper.insertBefore(label, rects[i]);
+      }
+    } else {
+      // Label belongs inside rect
+      if (label && label.parentElement !== rects[i]) {
+        rects[i].appendChild(label);
+      }
+      if (sizeClass === 'large') wrapper.classList.add('comparison-rect-large');
+      else wrapper.classList.add('comparison-rect-medium');
+    }
   }
 }
 
@@ -373,19 +398,36 @@ function updateDynamicText() {
   }
 }
 
+function updateWealthCounter() {
+  var el = document.getElementById('wealth-counter');
+  if (!el) return;
+  var elapsed = (Date.now() - pageOpenedAt) / 1000;
+  var earned = Math.floor(WEALTH_COUNTER_PER_SECOND * elapsed);
+  el.textContent = money.format(earned);
+}
+
 function renderTextContent(comp, vars) {
   return '<div class="title">' + interpolate(comp.title, vars) + '</div>';
 }
 
 function computeRectDimensions(amountUsd) {
   const areaPixels = amountUsd / DOLLARS_PER_PIXEL;
-  const maxWidth = currentBarWidth * MAX_SQUARE_WIDTH_FRACTION;
+  const barMax = currentBarWidth * MAX_SQUARE_WIDTH_FRACTION;
+  const viewportMax = window.innerWidth * 0.9;
+  const maxWidth = Math.min(barMax, viewportMax);
   const side = Math.sqrt(areaPixels);
 
   if (side <= maxWidth) {
     return { width: side, height: side };
   }
   return { width: maxWidth, height: areaPixels / maxWidth };
+}
+
+function getRectSizeClass(dims) {
+  const textFitsInside = dims.height >= MIN_RECT_HEIGHT_FOR_INNER_TEXT && dims.width >= MIN_RECT_WIDTH_FOR_INNER_TEXT;
+  if (!textFitsInside) return 'small';
+  const exceedsViewport = dims.height > window.innerHeight || dims.width > window.innerWidth;
+  return exceedsViewport ? 'large' : 'medium';
 }
 
 function renderSquareContent(comp, vars) {
@@ -398,10 +440,18 @@ function renderSquareContent(comp, vars) {
   const dims = computeRectDimensions(comp.amountUsd);
   const color = comp.squareColor || '#2196F3';
   const rectStyle = 'width:' + dims.width.toFixed(1) + 'px;height:' + dims.height.toFixed(1) + 'px;background-color:' + color;
-  const textFitsInside = dims.height >= MIN_RECT_HEIGHT_FOR_INNER_TEXT && dims.width >= MIN_RECT_WIDTH_FOR_INNER_TEXT;
+  const sizeClass = getRectSizeClass(dims);
 
-  if (textFitsInside) {
+  if (sizeClass === 'large') {
     return '<div class="comparison-rect-wrapper comparison-rect-large">' +
+      '<div class="comparison-rect" data-amount-usd="' + comp.amountUsd + '" style="' + rectStyle + '">' +
+        '<span class="comparison-rect-label">' + titleHtml + '</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  if (sizeClass === 'medium') {
+    return '<div class="comparison-rect-wrapper comparison-rect-medium">' +
       '<div class="comparison-rect" data-amount-usd="' + comp.amountUsd + '" style="' + rectStyle + '">' +
         '<span class="comparison-rect-label">' + titleHtml + '</span>' +
       '</div>' +
@@ -607,7 +657,10 @@ function startDeathTicker(config) {
 
   update();
   if (tickerIntervalId) clearInterval(tickerIntervalId);
-  tickerIntervalId = setInterval(update, TICKER_UPDATE_MS);
+  tickerIntervalId = setInterval(function() {
+    update();
+    updateWealthCounter();
+  }, TICKER_UPDATE_MS);
 }
 
 // ─── Init ───────────────────────────────────────────────────────────

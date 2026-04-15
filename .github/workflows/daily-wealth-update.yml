@@ -1,8 +1,10 @@
-name: Daily Wealth Update
+name: Wealth Data Update
 
+# Currently using static Forbes 2026 annual list data.
+# Uncomment the schedule to re-enable daily real-time updates.
 on:
-  schedule:
-    - cron: "15 5 * * *"
+  # schedule:
+  #   - cron: "15 5 * * *"
   workflow_dispatch:
 
 permissions:

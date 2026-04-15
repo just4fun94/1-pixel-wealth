@@ -140,6 +140,16 @@ h1 {
 .comparison-rect-label {
   color: inherit;
 }
+/* Medium rects: text inside, whole wrapper sticky (rect fits within viewport) */
+.comparison-rect-medium .comparison-rect {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comparison-rect-medium .comparison-rect-label {
+  text-align: center;
+}
 /* Large rects: label is sticky within the rect, wrapper is not sticky */
 .comparison-rect-large {
   width: 90%;
@@ -163,7 +173,8 @@ h1 {
     width: 85%;
   }
 }
-.infobox .comparison-rect-wrapper:not(.comparison-rect-large),
+.infobox .comparison-rect-wrapper:not(.comparison-rect-large):not(.comparison-rect-medium),
+.infobox .comparison-rect-wrapper.comparison-rect-medium,
 .text-infobox .title {
   position: sticky;
   top: 50%;
@@ -181,7 +192,8 @@ h1 {
   .infobox .comparison-rect,
   .infobox .comparison-rect-wrapper,
   .infobox .title,
-  .comparison-rect-large .comparison-rect-label {
+  .comparison-rect-large .comparison-rect-label,
+  .comparison-rect-medium .comparison-rect-label {
     top: 10px;
     transform: none;
   }

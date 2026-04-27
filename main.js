@@ -652,7 +652,9 @@ function getTickerItemLabel(comp) {
 function startDeathTicker(config) {
   const tickerEl = document.getElementById('death-ticker');
   const countsEl = document.getElementById('death-ticker-counts');
-  if (!tickerEl || !countsEl) return;
+  const closeBtn = document.getElementById('death-ticker-close');
+  const reopenBtn = document.getElementById('death-ticker-reopen');
+  if (!tickerEl || !countsEl || !closeBtn || !reopenBtn) return;
 
   // Auto-build groups from story comparisons that have both deathsPerYear and tickerGroup.
   // Order of groups matches the order they first appear in the comparisons array.
@@ -689,6 +691,10 @@ function startDeathTicker(config) {
     if (!triggerEl) return;
     var scrollTop = window.scrollY || window.pageYOffset || 0;
     var vh = window.innerHeight;
+    if (tickerEl.dataset.minimized === 'true') {
+      tickerEl.hidden = true;
+      return;
+    }
     tickerEl.hidden = !(scrollTop + vh > triggerEl.offsetTop);
   }
 
@@ -730,6 +736,21 @@ function startDeathTicker(config) {
     update();
     updateWealthCounter();
   }, TICKER_UPDATE_MS);
+
+  // Minimize/maximize logic
+  closeBtn.onclick = function() {
+    tickerEl.dataset.minimized = 'true';
+    tickerEl.hidden = true;
+    reopenBtn.style.display = 'flex';
+  };
+  reopenBtn.onclick = function() {
+    tickerEl.dataset.minimized = 'false';
+    tickerEl.hidden = false;
+    reopenBtn.style.display = 'none';
+    checkVisibility();
+  };
+  // Hide reopen button initially
+  reopenBtn.style.display = 'none';
 }
 
 // ─── Init ───────────────────────────────────────────────────────────

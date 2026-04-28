@@ -1,27 +1,5 @@
 {
   "version": 1,
-  "meta": {
-    "title": "Wealth, shown to scale",
-    "description": "Global wealth inequality visualized at true scale.",
-    "medianHouseholdIncomeUsd": 63180,
-    "lifetimeEarningsUsd": 2500000
-  },
-  "bars": [
-    {
-      "id": "richest",
-      "label": "Wealth of {richestName}",
-      "color": "#FF9800",
-      "wealthKey": "richestPersonWealthUsd",
-      "ruler": true
-    },
-    {
-      "id": "allBillionaires",
-      "label": "All the world's billionaires ({allBillionairesFormatted})",
-      "color": "#03A9F4",
-      "wealthKey": "allBillionairesTotalUsd",
-      "ruler": true
-    }
-  ],
   "comparisons": [
     {
       "id": "intro",
@@ -62,8 +40,7 @@
       "type": "text",
       "positionFraction": 0.125,
       "title": "Lol, just kidding, we're only about \u215B of the way. Keep scrolling though, there's more to see.",
-      "i18nKey": "i18n-lol-just-kidding",
-      "counterStart": true
+      "i18nKey": "i18n-lol-just-kidding"
     },
     {
       "id": "familiar-things",

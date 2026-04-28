@@ -13,6 +13,7 @@ html,
 .title-screen {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   position: relative;
 }
 h1 {
@@ -35,15 +36,12 @@ h1 {
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 48px;
-
   font-size: 30px;
   color: #00000033;
-
   background-image: url(img/down.svg);
   background-repeat: no-repeat;
   background-size: 50%;
   background-position: 50px 50px;
-
   animation-name: bouncy-arrow;
   animation-delay: 0;
   animation-iteration-count: infinite;
@@ -56,20 +54,19 @@ h1 {
   }
 }
 @keyframes bouncy-arrow {
-  0% {background-position: 50px 50px;}
-  20% {background-position: 50px 50px;}
-  25% {background-position: 50px 70px;}
-  30% {background-position: 50px 45px;}
-  35% {background-position: 50px 70px;}
-  40% {background-position: 50px 50px;}
-  100% {background-position: 50px 50px;}
+  0%   { background-position: 50px 50px; }
+  20%  { background-position: 50px 50px; }
+  25%  { background-position: 50px 70px; }
+  30%  { background-position: 50px 45px; }
+  35%  { background-position: 50px 70px; }
+  40%  { background-position: 50px 50px; }
+  100% { background-position: 50px 50px; }
 }
 .wealth-wrapper-outer {
   font-family: sans-serif;
   overflow: visible;
   display: block;
 }
-
 .wealth-row {
   display: flex;
   flex-direction: column;
@@ -121,6 +118,10 @@ h1 {
 .text-infobox .title {
   max-width: 450px;
 }
+/* Narrower max-width for the intro comparison */
+.comparison-intro .title {
+  max-width: 390px;
+}
 .infobox .comparison-rect-wrapper,
 .infobox .title {
   font-weight: normal;
@@ -140,7 +141,7 @@ h1 {
 .comparison-rect-label {
   color: inherit;
 }
-/* Medium rects: text inside, whole wrapper sticky (rect fits within viewport) */
+/* Medium rects: text inside, whole wrapper sticky */
 .comparison-rect-medium .comparison-rect {
   margin-top: 0;
   display: flex;
@@ -150,10 +151,12 @@ h1 {
 .comparison-rect-medium .comparison-rect-label {
   text-align: center;
 }
-/* Large rects: label is sticky within the rect, wrapper is not sticky */
+/* Large rects: label is sticky within the rect */
 .comparison-rect-large {
   width: 90%;
   max-width: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 .comparison-rect-large .comparison-rect {
   margin-top: 0;
@@ -179,7 +182,6 @@ h1 {
     text-align: center;
   }
   .infobox {
-    min-height: 60vh;
     align-items: center;
     justify-content: center;
   }
@@ -199,10 +201,6 @@ h1 {
   margin-top: 25vh;
   margin-bottom: 25vh;
 }
-.comparison-rect-large {
-  margin-left: auto;
-  margin-right: auto;
-}
 @media (max-width: 450px) {
   .infobox .comparison-rect,
   .infobox .comparison-rect-wrapper,
@@ -213,23 +211,13 @@ h1 {
     transform: none;
   }
 }
+/* Infobox: layout only — height & margin are set by JS */
 .infobox {
   z-index: 1;
-  margin-top: 0;
-  height: calc(var(--infobox-margin, 6000px) * 2);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.infobox.first {
-  margin-top: var(--infobox-first-margin, 30000px);  height: calc(var(--infobox-first-margin, 15000px) * 2);}
-.infobox.first .title {
-  max-width: 390px;
-}
-.infobox-close {
-  margin-top: 0;
-  height: calc(var(--infobox-close-margin, 500px) * 2);
 }
 .one-thousand {
   width: 1px;
@@ -240,7 +228,7 @@ h1 {
   height: 200px;
   width: 100%;
 }
-.median .wealth{
+.median .wealth {
   width: 7.94px;
   height: 7.94px;
 }
@@ -316,21 +304,6 @@ h1 {
   }
 }
 
-/* ─── Scroll duration classes (mapped from story.json scrollDuration) ─── */
-.infobox-duration-long {
-  height: calc(var(--infobox-margin, 6000px) * 3);
-}
-.infobox-duration-medium {
-  height: calc(var(--infobox-margin, 6000px) * 2);
-}
-.infobox-duration-short {
-  height: calc(var(--infobox-half-margin, 4000px) * 2);
-}
-.infobox-first-margin {
-  margin-top: var(--infobox-first-margin, 30000px);
-  height: calc(var(--infobox-first-margin, 15000px) * 2);
-}
-
 /* ─── All-billionaires bar segments ─── */
 .bar-segment {
   display: block;
@@ -369,8 +342,6 @@ h1 {
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
-  /* top: clamp(12px, 12vh, 120px);
-  transform: none; */
 }
 .cause-pie {
   position: relative;
@@ -444,8 +415,6 @@ h1 {
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
-  /* top: clamp(12px, 12vh, 120px);
-  transform: none; */
 }
 .side-by-side-chart {
   margin: 16px 0;

@@ -214,7 +214,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.525,
-      "title": "These people may see themselves as fabulously rich, and often oppose policies aimed at reducing inequality",
+      "title": "Many millionaires may see themselves as fabulously rich, and often oppose policies aimed at reducing inequality.",
       "i18nKey": "i18n-oppose-inequality-policies"
     },
     {
@@ -222,7 +222,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.55,
-      "title": "But many have not fully grasped the enormous gulf between themselves and the super rich.",
+      "title": "But they have not fully grasped the enormous gulf between themselves and the super rich.",
       "i18nKey": "i18n-gulf-between-super-rich"
     },
     {
@@ -238,7 +238,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.60,
-      "title": "His wealth increased by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$500 billion </a> in 2025 alone, which equals the <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> entire annual GDP of Denmark </a>.",
+      "title": "His wealth increased by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$500 billion </a> in 2025 alone, which equals the <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> entire annual GDP of Denmark </a>. In other words:<br>every product sold, every service rendered, <strong>everything the entire country of Denmark produced in a year</strong> — that's how much his wealth grew in one year.",
       "i18nKey": "i18n-elon-musk-2025-income"
     },
     {
@@ -492,7 +492,7 @@
       "positionFraction": 0.0065,
       "title": "End HIV/AIDS",
       "costUsd": 143000000000,
-      "description": "HIV/AIDS killed about <a href=\"https://www.unaids.org/sites/default/files/media_asset/UNAIDS_FactSheet_en.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">630,000 people in 2024</a>. Around 41M people are living with HIV/AIDS. It would cost a total of <a href=\"https://www.unaids.org/sites/default/files/media_asset/JC3019_InvestingintheAIDSresponse_En.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">~$143 billion</a> put the world on track to end AIDS as a public health threat by 2030.",
+      "description": "HIV/AIDS killed about <a href=\"https://www.unaids.org/sites/default/files/media_asset/UNAIDS_FactSheet_en.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">630,000 people in 2024</a>. Around 41M people are living with HIV/AIDS. It would cost a total of <a href=\"https://www.unaids.org/sites/default/files/media_asset/JC3019_InvestingintheAIDSresponse_En.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">~$143 billion</a> to put the world on track to end AIDS as a public health threat by 2030.",
       "tickerGroup": "Infectious Diseases",
       "tickerDescription": "HIV/AIDS",
       "deathsPerYear": 630000,
@@ -960,7 +960,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.030,
-      "title": "It's one of the greatest threats humanity has ever faced. And somehow, we've decided we can't afford to deal with it properly while a fewer than 3,500 people sit on more than $20 trillion.",
+      "title": "It's one of the greatest threats humanity has ever faced. And somehow, we've decided we can't afford to deal with it properly while fewer than 3,500 people sit on more than $20 trillion.",
       "i18nKey": "i18n-climate-crisis-intro-3"
     },
     {
@@ -1241,7 +1241,7 @@
     "bar": "allBillionaires",
     "type": "text",
     "positionFraction": 0.046,
-    "title": "<strong>Go deeper.</strong><br><br>If you're wondering whether there's actually a case for limiting extreme wealth — not out of envy, but out of math — I tried to reason through it from first principles: <a href=\"TODO:YOUR_URL\">Do We Need a Wealth Cap?</a>",
+    "title": "<strong>Go deeper.</strong><br><br>Everything above was the moral case. But there are many more reasons to rethink extreme wealth, including psychological, political and physical ones. I reasoned through the physics from first principles here: <a href=\"TODO:YOUR_URL\">Do We Need a Wealth Cap?</a>",
     "i18nKey": "i18n-go-deeper"
     },
     {

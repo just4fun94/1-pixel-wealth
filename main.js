@@ -67,10 +67,10 @@ function interpolate(text, vars) {
 }
 
 function detectMaxScrollHeight() {
-  var probe = document.createElement('div');
+  const probe = document.createElement('div');
   probe.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:99999999px;visibility:hidden;pointer-events:none;';
   document.body.appendChild(probe);
-  var actualMax = document.documentElement.scrollHeight;
+  const actualMax = document.documentElement.scrollHeight;
   document.body.removeChild(probe);
   return actualMax;
 }
@@ -79,8 +79,8 @@ function getMaxSafeAllBillionairesH(barWidth) {
   if (_detectedMaxScrollHeight === null) {
     _detectedMaxScrollHeight = detectMaxScrollHeight();
   }
-  var richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
-  var otherContentH = 10000;
+  const richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
+  const otherContentH = 10000;
   return Math.max(0, _detectedMaxScrollHeight - richestH - otherContentH);
 }
 
@@ -92,14 +92,14 @@ function computeBarWidth() {
 
 function applyDimensions(barWidth) {
   currentBarWidth = barWidth;
-  var billionBarWidth = Math.min(barWidth, 1000);
-  var billionH = Math.round(1e9 / (billionBarWidth * DOLLARS_PER_PIXEL));
-  var richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
+  const billionBarWidth = Math.min(barWidth, 1000);
+  const billionH = Math.round(1e9 / (billionBarWidth * DOLLARS_PER_PIXEL));
+  const richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
 
   // Calculate logical height, then cap if needed
-  var logicalAllBillionairesH = Math.round(allBillionairesTotalUsd / (barWidth * DOLLARS_PER_PIXEL));
-  var maxSafeH = getMaxSafeAllBillionairesH(barWidth);
-  var allBillionairesH;
+  const logicalAllBillionairesH = Math.round(allBillionairesTotalUsd / (barWidth * DOLLARS_PER_PIXEL));
+  const maxSafeH = getMaxSafeAllBillionairesH(barWidth);
+  let allBillionairesH;
 
   if (logicalAllBillionairesH > maxSafeH) {
     allBillionairesH = maxSafeH;
@@ -113,16 +113,16 @@ function applyDimensions(barWidth) {
     pctReached = 100;
   }
 
-  var root = document.documentElement.style;
+  const root = document.documentElement.style;
   root.setProperty('--bar-width', barWidth + 'px');
   root.setProperty('--bar-width-billion', billionBarWidth + 'px');
   root.setProperty('--billion-h', billionH + 'px');
   root.setProperty('--richest-h', richestH + 'px');
   root.setProperty('--all-billionaires-h', allBillionairesH + 'px');
 
-  var scaleText = formatCompactMoney(RULER_TICK_PX * barWidth * DOLLARS_PER_PIXEL);
-  var scaleEls = document.querySelectorAll('.scale-label');
-  for (var i = 0; i < scaleEls.length; i++) { scaleEls[i].textContent = scaleText; }
+  const scaleText = formatCompactMoney(RULER_TICK_PX * barWidth * DOLLARS_PER_PIXEL);
+  const scaleEls = document.querySelectorAll('.scale-label');
+  for (let i = 0; i < scaleEls.length; i++) { scaleEls[i].textContent = scaleText; }
 
   segmentBar('allBillionaires', allBillionairesH, barWidth);
 }
@@ -274,10 +274,10 @@ function applyData(billionaireData, storyData) {
 function renderComparisons() {
   if (!story || !story.comparisons) return;
 
-  var richestContainer = document.getElementById('richest-comparisons');
-  var allContainer = document.getElementById('allBillionaires-comparisons');
+  const richestContainer = document.getElementById('richest-comparisons');
+  const allContainer = document.getElementById('allBillionaires-comparisons');
 
-  var templateVars = {
+  const templateVars = {
     richestName: richestName,
     richestDailyIncome: formatCompactMoney(Math.round(richestPersonWealthUsd / 365)),
     scrollRate: formatCompactMoney(currentBarWidth * DOLLARS_PER_PIXEL * SCROLL_RATE_PX),
@@ -285,14 +285,14 @@ function renderComparisons() {
     billionaireCount: thousand.format(billionaireCount),
   };
 
-  var groups = { richest: [], allBillionaires: [] };
+  const groups = { richest: [], allBillionaires: [] };
   story.comparisons.forEach(function(c) {
-    var barKey = c.bar || 'allBillionaires';
+    const barKey = c.bar || 'allBillionaires';
     if (groups[barKey]) groups[barKey].push(c);
   });
 
   // For the allBillionaires bar: filter, remap, and add cap message if needed
-  var allComps = prepareAllBillionairesComparisons(groups.allBillionaires);
+  const allComps = prepareAllBillionairesComparisons(groups.allBillionaires);
 
   if (richestContainer) {
     richestContainer.innerHTML = '';
@@ -308,14 +308,14 @@ function prepareAllBillionairesComparisons(comparisons) {
   if (!isCapped) return comparisons;
 
   // Filter out comparisons beyond the capped portion
-  var visible = comparisons.filter(function(c) {
+  const visible = comparisons.filter(function(c) {
     return c.positionFraction <= cappedFraction;
   });
 
   // Remap fractions to capped bar coordinates
-  var remapped = visible.map(function(c) {
-    var copy = {};
-    for (var key in c) {
+  const remapped = visible.map(function(c) {
+    const copy = {};
+    for (const key in c) {
       if (c.hasOwnProperty(key)) copy[key] = c[key];
     }
     copy.positionFraction = c.positionFraction / cappedFraction;
@@ -323,8 +323,8 @@ function prepareAllBillionairesComparisons(comparisons) {
   });
 
   // Add the "browser broke" message near the bottom
-  var remainingWealth = allBillionairesTotalUsd * (1 - cappedFraction);
-  var brokeMessage = {
+  const remainingWealth = allBillionairesTotalUsd * (1 - cappedFraction);
+  const brokeMessage = {
     id: 'browser-broke',
     bar: 'allBillionaires',
     type: 'text',
@@ -759,11 +759,11 @@ window.addEventListener('resize', function() {
   if (resizeRafId) cancelAnimationFrame(resizeRafId);
   resizeRafId = requestAnimationFrame(function() {
     resizeRafId = null;
-    var scrollTop = window.scrollY || window.pageYOffset || 0;
+    const scrollTop = window.scrollY || window.pageYOffset || 0;
 
-    var anchor = null;
-    var richestEl = document.getElementById('richest');
-    var allEl = document.getElementById('allBillionaires');
+    let anchor = null;
+    const richestEl = document.getElementById('richest');
+    const allEl = document.getElementById('allBillionaires');
 
     if (richestEl && scrollTop >= richestEl.offsetTop && scrollTop < richestEl.offsetTop + richestEl.offsetHeight) {
       anchor = { id: 'richest', frac: (scrollTop - richestEl.offsetTop) / richestEl.offsetHeight };
@@ -784,7 +784,7 @@ window.addEventListener('resize', function() {
     }
 
     if (anchor) {
-      var el = document.getElementById(anchor.id);
+      const el = document.getElementById(anchor.id);
       if (el) window.scrollTo(0, el.offsetTop + anchor.frac * el.offsetHeight);
     }
   });

@@ -2,7 +2,12 @@
 window.i18n_data = {
 code : 'de',
 strings : {
-'i18n-wealth-shown-to' : "Reichtum, maßstabsgetreu",
+'i18n-wealth-shown-to': 'Reichtum, maßstabsgetreu',
+'i18n-scroll': 'scrollen',
+'i18n-USD1000': '1.000 $',
+'i18n-USD63180-median': '63.180 $ (Median US-Haushaltseinkommen)',
+'i18n-USD1-million': '1 Million $',
+'i18n-USD1-billion': '1 Milliarde $',
 'i18n-intro-text' : "Elon Musk ist so reich, dass es buchstäblich unvorstellbar ist.",
 'i18n-we-rarely-see-wealth' : "Wir sehen nur selten maßstabsgetreue Darstellungen von Reichtum. Das ist einer der Gründe, warum Menschen das relative Vermögen der Superreichen <a href=\"https://academic.oup.com/pnasnexus/article/3/9/pgae333/7756543\" target=\"_blank\" rel=\"noopener noreferrer\">konsequent unterschätzen</a>.",
 'i18n-every-10-pixels' : "Alle 10 Pixel, die du scrollst, entsprechen {scrollRate}.",

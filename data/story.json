@@ -1222,12 +1222,12 @@
     "i18nKey": "i18n-go-deeper"
     },
     {
-      "id": "dont-let-someone-tell-you",
+      "id": "dont-let-anyone-tell-you",
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.093,
-      "title": "And most importantly: <strong>Don't let someone tell you it's impossible to change this.</strong><br><br> The only reason we're in this situation is that we accepted it. We can un-accept it. The money exists. The solutions exist. The only thing missing is the decision to act.",
-      "i18nKey": "i18n-dont-let-someone-tell-you"
+      "title": "And most importantly: <strong>Don't let anyone tell you it's impossible to change this.</strong><br><br> The only reason we're in this situation is that we accepted it. We can un-accept it. The money exists. The solutions exist. The only thing missing is the decision to act.",
+      "i18nKey": "i18n-dont-let-anyone-tell-you"
     },
     {
       "id": "scroll-63-percent-of-money",

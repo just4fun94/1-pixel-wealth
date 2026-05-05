@@ -16,8 +16,14 @@ const TICKER_UPDATE_MS = 1000;
 const WEALTH_COUNTER_ANNUAL_USD = 500_000_000_000;
 const WEALTH_COUNTER_PER_SECOND = WEALTH_COUNTER_ANNUAL_USD / (365.25 * 24 * 3600);
 
-const thousand = new Intl.NumberFormat('en-US');
-const money = new Intl.NumberFormat('en-US', {
+function getActiveLocale() {
+  var lang = window.i18n_data && window.i18n_data.code;
+  if (lang === 'de') return 'de-DE';
+  return 'en-US';
+}
+
+const thousand = new Intl.NumberFormat(getActiveLocale());
+const money = new Intl.NumberFormat(getActiveLocale(), {
   style: 'currency',
   currency: 'USD',
   minimumFractionDigits: 0,

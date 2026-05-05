@@ -282,6 +282,9 @@ strings : {
 'i18n-ui-browser-broke' : '<strong>Selbst dein Browser kann so viel Geld nicht verarbeiten!</strong><br><br>Du hast ~<strong>{pctReached}</strong> ihres Vermögens durchgescrollt und dein Gerät hat sein Limit erreicht. Die verbleibenden <strong>{pctRemaining}</strong> — etwa <strong>{remainingFormatted}</strong> — können einfach nicht dargestellt werden.<br><br>{totalFormatted} — eine Zahl, die zu groß für deinen Browser ist. Aber nicht zu groß für {billionaireCount} Milliardäre.',
 
 // ─── Ticker group names ─────────────────────────────────────────────
+'i18n-inspired-by' : 'inspiriert von <a href="https://github.com/mkorostoff" target="_blank" rel="noopener noreferrer">mkorostoff</a>',
+
+// ─── Ticker group names ─────────────────────────────────────────────
 'i18n-ticker-group-infectious-diseases' : 'Infektionskrankheiten',
 'i18n-ticker-group-basic-needs' : 'Grundbedürfnisse',
 'i18n-ticker-group-environmental-health' : 'Umweltgesundheit',

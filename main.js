@@ -329,7 +329,7 @@ function initNextMessageNav() {
   if (!nextMessageBtn) return;
   nextMessageNavInitialized = true;
 
-  const nextPointLabel = tUI('next-point', 'Next point');
+  const nextPointLabel = tUI('next-point', 'Next message');
   nextMessageBtn.textContent = nextPointLabel;
   nextMessageBtn.title = nextPointLabel;
 
@@ -648,10 +648,11 @@ function updateDynamicText() {
   if (!scrollRateComp) return;
   const els = document.querySelectorAll('[data-dynamic="scrollRate"]');
   const newRate = formatCompactMoney(currentBarWidth * DOLLARS_PER_PIXEL * SCROLL_RATE_PX);
+  const localizedTitle = t(scrollRateComp.i18nKey, scrollRateComp.title);
   for (let i = 0; i < els.length; i++) {
     const titleEl = els[i].querySelector('.title');
     if (titleEl) {
-      titleEl.innerHTML = interpolate(scrollRateComp.title, {
+      titleEl.innerHTML = interpolate(localizedTitle, {
         richestName: richestName,
         scrollRate: newRate,
       });

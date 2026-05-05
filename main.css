@@ -117,6 +117,9 @@ h1 {
   align-self: flex-start;
   width: calc(100% - 90px);
 }
+.wealth-header .wealth-title {
+  padding-left: 4px;
+}
 
 /* ─── Calibration Bars ─── */
 .one-thousand {

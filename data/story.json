@@ -369,9 +369,9 @@
       "bar": "allBillionaires",
       "type": "image",
       "positionFraction": 0.003,
-      "title": "That's the whole group. Every billionaire on Earth fits in there:",
+      "title": "That's the whole group. Every billionaire on Earth fits in there — with 227 seats to spare:",
       "imageUrl": "img/concert-hall.png",
-      "imageAlt": "Seating chart of a concert hall with capacity 3428",
+      "imageAlt": "Seating chart of the Eventim Apollo in London.",
       "i18nKey": "i18n-billionaires-concert-hall"
     },
     {
@@ -554,12 +554,12 @@
       "i18nKey": "i18n-lead-poisoning-investment-return"
     },
     {
-      "id": "one-percent-of-money",
+      "id": "remember-scale",
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.02,
-      "title": "Good job, you've already scrolled through <strong>2%</strong> of all billionaire wealth. Keep in mind that every single pixel you scroll still represents <strong>$1,000</strong>. <br><br> There's a lot left to explore, so let's keep going.",
-      "i18nKey": "i18n-one-percent-of-money"
+      "title": "Keep in mind that every single pixel you scroll still represents <strong>$1,000</strong>.",
+      "i18nKey": "i18n-remember-scale"
     },
     {
     "id": "end-blindness",
@@ -578,7 +578,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.022,
-      "title": "A total investment of just <a href=\"https://visionatlas.iapb.org/wp-content/uploads/2025/09/The-Value-of-Vision_Full-Report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$7.1 billion</a> from 2025-2030 would result in: <ul><li>198 million fewer people with near vision impairment</li><li>24 million fewer people with mild vision impairment</li><li>30 million fewer people with moderate to severe visual impairment</li><li>3 million fewer people with blindness</li></ul><br>Apart from the health benefits, this investment would return $28 for every $1 invested.",
+      "title": "A total investment of just <a href=\"https://visionatlas.iapb.org/wp-content/uploads/2025/09/The-Value-of-Vision_Full-Report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$7.1 billion</a> from 2025-2030 would help over 250 million people to see better and save 3 million people from blindness. On top of the health benefits, this investment would return $28 for every $1 invested.",
       "i18nKey": "i18n-end-blindness-2"
     },
     {

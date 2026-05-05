@@ -765,17 +765,34 @@ function startDeathTicker() {
   const firstGroupComp = story.comparisons.find(function(c) { return c.tickerGroup && c.deathsPerYear; });
   const triggerEl = firstGroupComp ? document.querySelector('.comparison-' + firstGroupComp.id) : null;
 
+  let tickerVisible = null;
+
   function checkVisibility() {
     if (!triggerEl) return;
     const scrollTop = window.scrollY || window.pageYOffset || 0;
     if (tickerEl.dataset.minimized === 'true') {
-      tickerEl.hidden = true;
+      if (tickerVisible !== false) {
+        tickerEl.hidden = true;
+        tickerVisible = false;
+      }
       return;
     }
-    tickerEl.hidden = !(scrollTop + getStableVh() > triggerEl.offsetTop);
+
+    const shouldShow = (scrollTop + getStableVh() > triggerEl.offsetTop);
+    if (tickerVisible !== shouldShow) {
+      tickerEl.hidden = !shouldShow;
+      tickerVisible = shouldShow;
+    }
   }
 
-  window.addEventListener('scroll', checkVisibility);
+  let tickerVisibilityRafId = null;
+  window.addEventListener('scroll', function() {
+    if (tickerVisibilityRafId !== null) return;
+    tickerVisibilityRafId = requestAnimationFrame(function() {
+      tickerVisibilityRafId = null;
+      checkVisibility();
+    });
+  }, { passive: true });
   checkVisibility();
 
   function translateGroupName(name) {
@@ -878,6 +895,6 @@ window.addEventListener('scroll', function() {
       scrollRafScheduled = false;
     });
   }
-});
+}, { passive: true });
 
 loadData();

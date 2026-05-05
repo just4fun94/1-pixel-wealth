@@ -15,6 +15,9 @@ const FETCH_TIMEOUT_MS = 15_000;
 const TICKER_UPDATE_MS = 1000;
 const WEALTH_COUNTER_ANNUAL_USD = 500_000_000_000;
 const WEALTH_COUNTER_PER_SECOND = WEALTH_COUNTER_ANNUAL_USD / (365.25 * 24 * 3600);
+const AUTO_SCROLL_MIN_DURATION_MS = 350;
+const AUTO_SCROLL_MAX_DURATION_MS = 2200;
+const AUTO_SCROLL_PIXELS_PER_SECOND = 12_000;
 
 function getActiveLocale() {
   var lang = window.i18n_data && window.i18n_data.code;
@@ -61,6 +64,9 @@ let pageOpenedAt = Date.now();
 let tickerIntervalId = null;
 let scrollRateComp = null;
 let _detectedMaxScrollHeight = null;
+let nextMessageBtn = null;
+let nextMessageNavInitialized = false;
+let autoScrollRafId = null;
 
 // ─── Capping state ──────────────────────────────────────────────────
 let isCapped = false;
@@ -242,6 +248,109 @@ function updateWealthCounter() {
   el.textContent = money.format(Math.floor(WEALTH_COUNTER_PER_SECOND * elapsed));
 }
 
+function findNextInfobox(fromScrollTop) {
+  const items = document.querySelectorAll('#richest-comparisons .infobox, #allBillionaires-comparisons .infobox');
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].offsetTop > fromScrollTop + 4) return items[i];
+  }
+  return null;
+}
+
+function hasReachedFirstRichestMessage(scrollTop) {
+  const firstRichest = document.querySelector('#richest-comparisons .infobox');
+  if (!firstRichest) return false;
+  return scrollTop + getStableVh() >= firstRichest.offsetTop;
+}
+
+function updateNextMessageButtonState() {
+  if (!nextMessageBtn) return;
+  const scrollTop = window.scrollY || window.pageYOffset || 0;
+  const reachedFirstRichest = hasReachedFirstRichestMessage(scrollTop);
+  const hasNext = !!findNextInfobox(scrollTop);
+  const shouldShow = reachedFirstRichest && hasNext;
+  nextMessageBtn.hidden = !shouldShow;
+  nextMessageBtn.disabled = !shouldShow || autoScrollRafId !== null;
+}
+
+function stopAutoScroll() {
+  if (autoScrollRafId === null) return;
+  cancelAnimationFrame(autoScrollRafId);
+  autoScrollRafId = null;
+  if (nextMessageBtn) {
+    nextMessageBtn.classList.remove('is-scrolling');
+  }
+  updateNextMessageButtonState();
+}
+
+function startAutoScroll(targetY) {
+  const startY = window.scrollY || window.pageYOffset || 0;
+  const distance = Math.max(0, targetY - startY);
+  if (distance <= 0) return;
+
+  stopAutoScroll();
+
+  const duration = Math.min(
+    AUTO_SCROLL_MAX_DURATION_MS,
+    Math.max(AUTO_SCROLL_MIN_DURATION_MS, Math.round((distance / AUTO_SCROLL_PIXELS_PER_SECOND) * 1000))
+  );
+  const startedAt = performance.now();
+
+  if (nextMessageBtn) {
+    nextMessageBtn.classList.add('is-scrolling');
+    nextMessageBtn.disabled = true;
+  }
+
+  function step(now) {
+    const elapsed = now - startedAt;
+    const progress = Math.min(1, elapsed / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const y = startY + distance * eased;
+    window.scrollTo(0, y);
+
+    if (progress < 1) {
+      autoScrollRafId = requestAnimationFrame(step);
+      return;
+    }
+
+    autoScrollRafId = null;
+    if (nextMessageBtn) {
+      nextMessageBtn.classList.remove('is-scrolling');
+    }
+    updateNextMessageButtonState();
+  }
+
+  autoScrollRafId = requestAnimationFrame(step);
+}
+
+function initNextMessageNav() {
+  if (nextMessageNavInitialized) return;
+
+  nextMessageBtn = document.getElementById('next-message-btn');
+  if (!nextMessageBtn) return;
+  nextMessageNavInitialized = true;
+
+  const nextPointLabel = tUI('next-point', 'Next point');
+  nextMessageBtn.textContent = nextPointLabel;
+  nextMessageBtn.title = nextPointLabel;
+
+  nextMessageBtn.addEventListener('click', function() {
+    const scrollTop = window.scrollY || window.pageYOffset || 0;
+    const nextEl = findNextInfobox(scrollTop);
+    if (!nextEl) return;
+    startAutoScroll(nextEl.offsetTop);
+  });
+
+  const interruptAutoScroll = function() {
+    stopAutoScroll();
+  };
+  window.addEventListener('wheel', interruptAutoScroll, { passive: true });
+  window.addEventListener('touchstart', interruptAutoScroll, { passive: true });
+  window.addEventListener('mousedown', interruptAutoScroll);
+  window.addEventListener('keydown', interruptAutoScroll);
+
+  updateNextMessageButtonState();
+}
+
 // ─── Data Loading ───────────────────────────────────────────────────
 function fetchWithFallback(path) {
   const opts = { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) };
@@ -305,6 +414,8 @@ function applyData(billionaireData, storyData) {
   }
 
   renderComparisons();
+  initNextMessageNav();
+  updateNextMessageButtonState();
 
   // Re-layout after fonts are fully loaded (prevents mismeasured content on mobile)
   if (document.fonts && document.fonts.ready) {
@@ -353,6 +464,8 @@ function renderComparisons() {
     allContainer.innerHTML = '';
     renderGroup(allComps, allContainer, allBillionairesTotalUsd, templateVars);
   }
+
+  updateNextMessageButtonState();
 }
 
 function prepareAllBillionairesComparisons(comparisons) {
@@ -892,6 +1005,7 @@ window.addEventListener('scroll', function() {
     scrollRafScheduled = true;
     requestAnimationFrame(function() {
       updateWealthCounters();
+      updateNextMessageButtonState();
       scrollRafScheduled = false;
     });
   }

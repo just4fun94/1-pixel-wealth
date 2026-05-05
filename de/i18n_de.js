@@ -279,6 +279,7 @@ strings : {
 'i18n-ui-all-billionaires-title' : 'Alle {count} Milliardäre der Welt ({amount})',
 'i18n-ui-total-preventable-deaths' : 'vermeidbare Todesfälle insgesamt',
 'i18n-ui-preventable-deaths-label' : 'VERMEIDBARE TODESFÄLLE SEIT DU DIESE SEITE GEÖFFNET HAST:',
+'i18n-ui-next-point' : 'Nächster Punkt',
 'i18n-ui-browser-broke' : '<strong>Selbst dein Browser kann so viel Geld nicht verarbeiten!</strong><br><br>Du hast ~<strong>{pctReached}</strong> ihres Vermögens durchgescrollt und dein Gerät hat sein Limit erreicht. Die verbleibenden <strong>{pctRemaining}</strong> — etwa <strong>{remainingFormatted}</strong> — können einfach nicht dargestellt werden.<br><br>{totalFormatted} — eine Zahl, die zu groß für deinen Browser ist. Aber nicht zu groß für {billionaireCount} Milliardäre.',
 
 // ─── Ticker group names ─────────────────────────────────────────────

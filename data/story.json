@@ -55,7 +55,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.175,
-      "title": "Yearly income of the median American (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$63,180 </a>)",
+      "title": "Yearly income of the median American (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\">~$63,180</a>)",
       "amountUsd": 63180,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-yearly-earnings-american"
@@ -65,7 +65,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.20,
-      "title": "How much Elon Musk makes while buckling his seatbelt (4 seconds, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$63,420 </a>)",
+      "title": "How much Elon Musk makes while buckling his seatbelt (4 seconds, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$63,420</a>)",
       "amountUsd": 63420,
       "squareColor": "#00E676",
       "i18nKey": "i18n-seat-belt"
@@ -75,7 +75,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.225,
-      "title": "The average cost of a house in the United States (<a href=\"https://fred.stlouisfed.org/series/MSPUS\" target=\"_blank\" rel=\"noopener noreferrer\"> $405,300 </a>)",
+      "title": "The average cost of a house in the United States (<a href=\"https://fred.stlouisfed.org/series/MSPUS\" target=\"_blank\" rel=\"noopener noreferrer\">$405,300</a>)",
       "amountUsd": 405300,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-average-cost-house"
@@ -85,7 +85,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.25,
-      "title": "How much Elon Musk makes in the time it takes to make a cup of instant coffee (1 minute, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$951,000 </a>)",
+      "title": "How much Elon Musk makes in the time it takes to make a cup of instant coffee (1 minute, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$951,000</a>)",
       "amountUsd": 951000,
       "squareColor": "#00E676",
       "i18nKey": "i18n-instant-coffee"
@@ -95,7 +95,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.275,
-      "title": "All the money the median American will earn in their entire lifetime (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$2.5 million</a>)",
+      "title": "All the money the median American will earn in their entire lifetime (<a href=\"https://www.bls.gov/news.release/wkyeng.t01.htm\" target=\"_blank\" rel=\"noopener noreferrer\">~$2.5 million</a>)",
       "amountUsd": 2500000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-lifetime-earnings-american"
@@ -105,7 +105,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.30,
-      "title": "For the poorest half of humanity — 2.8 billion adults — average income is just <a href=\"https://wir2026.wid.world/insight/global-economic-inequity/\" target=\"_blank\" rel=\"noopener noreferrer\"> $5,100 per year</a>, or about $200,000 in a lifetime.",
+      "title": "For the poorest half of humanity — 2.8 billion adults — average income is just <a href=\"https://wir2026.wid.world/insight/global-economic-inequity/\" target=\"_blank\" rel=\"noopener noreferrer\">$5,100 per year</a>, or about $200,000 in a lifetime.",
       "amountUsd": 200000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-lifetime-earnings-poorest-half"
@@ -115,7 +115,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.325,
-      "title": "Even the fortunes of the wealthy and very rich people are dwarfed by the incomprehensible wealth of the 0.0001%.",
+      "title": "Even the fortunes of the wealthy and very rich people are dwarfed by the incomprehensible wealth of the richest 0.0001%.",
       "i18nKey": "i18n-even-the-fortunes-of-the-wealthy"
     },
     {
@@ -123,7 +123,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.35,
-      "title": "Lifetime earnings of a US lawyer (on average <a href=\"https://www.bls.gov/ooh/legal/lawyers.htm\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$6 million </a>)",
+      "title": "Lifetime earnings of a US lawyer (on average <a href=\"https://www.bls.gov/ooh/legal/lawyers.htm\" target=\"_blank\" rel=\"noopener noreferrer\">~$6 million</a>)",
       "amountUsd": 6000000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-lifetime-earnings-lawyer"
@@ -133,7 +133,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.375,
-      "title": "Lifetime earnings of a US doctor (on average <a href=\"https://www.medrxiv.org/content/10.1101/2025.08.19.25333972v1.full\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$6.5 million </a>)",
+      "title": "Lifetime earnings of a US doctor (on average <a href=\"https://www.medrxiv.org/content/10.1101/2025.08.19.25333972v1.full\" target=\"_blank\" rel=\"noopener noreferrer\">~$6.5 million</a>)",
       "amountUsd": 6500000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-lifetime-earnings-doctor"
@@ -143,7 +143,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.40,
-      "title": "Estimated wealth of Ryan Gosling (<a href=\"https://www.celebritynetworth.com/richest-celebrities/actors/ryan-gosling-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$70 million </a>)",
+      "title": "Estimated wealth of Ryan Gosling (<a href=\"https://www.celebritynetworth.com/richest-celebrities/actors/ryan-gosling-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\">~$70 million</a>)",
       "amountUsd": 70000000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-estimated-wealth-ryan-gosling"
@@ -153,7 +153,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.425,
-      "title": "How much Elon Musk makes while watching a movie starring Ryan Gosling (Barbie, 114 minutes, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$108 million </a>)",
+      "title": "How much Elon Musk makes while watching a movie starring Ryan Gosling (Barbie, 114 minutes, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$108 million</a>)",
       "amountUsd": 108000000,
       "squareColor": "#00E676",
       "i18nKey": "i18n-movie-barbie"
@@ -171,7 +171,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.475,
-      "title": "Estimated wealth of Goldman Sachs CEO David Solomon (<a href=\"https://www.celebritynetworth.com/richest-businessmen/wall-street/david-solomon-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$400 million </a>)",
+      "title": "Estimated wealth of Goldman Sachs CEO David Solomon (<a href=\"https://www.celebritynetworth.com/richest-businessmen/wall-street/david-solomon-net-worth/\" target=\"_blank\" rel=\"noopener noreferrer\">~$400 million</a>)",
       "amountUsd": 400000000,
       "squareColor": "#2196F3",
       "i18nKey": "i18n-estimated-wealth-david-solomon"
@@ -181,7 +181,7 @@
       "bar": "richest",
       "type": "square",
       "positionFraction": 0.50,
-      "title": "How much Elon Musk makes every night while he is sleeping (8 hours, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$456 million </a>)",
+      "title": "How much Elon Musk makes every night while he is sleeping (8 hours, <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$456 million</a>)",
       "amountUsd": 456000000,
       "squareColor": "#00E676",
       "i18nKey": "i18n-every-night-while-sleeping"
@@ -207,7 +207,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.575,
-      "title": "Elon Musk could've spent $1 billion every single day in 2025 and his wealth still would've grown by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$370 million </a> each day.",
+      "title": "Elon Musk could've spent <strong>$1 billion every single day</strong> in 2025 and his wealth still would've grown by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$370 million</a> each day.",
       "i18nKey": "i18n-elon-musk-daily-income"
     },
     {
@@ -215,7 +215,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.60,
-      "title": "His wealth increased by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\"> ~$500 billion </a> in 2025 alone, which equals the <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> entire annual GDP of Denmark </a>. In other words:<br>every product sold, every service rendered, <strong>everything the entire country of Denmark produced in a year</strong> — that's how much his wealth grew in one year.",
+      "title": "His wealth increased by <a href=\"https://www.forbes.com/sites/pr/2026/03/10/forbes-40th-annual-worlds-billionaires-list-elon-musk-is-worlds-richest-person-ever-recorded/\" target=\"_blank\" rel=\"noopener noreferrer\">~$500 billion</a> in 2025 alone, which equals the <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\">entire annual GDP of Denmark</a>. In other words:<br>every product sold, every service rendered, <strong>everything the entire country of Denmark produced in a year</strong> — that's how much his wealth grew in one year.",
       "i18nKey": "i18n-elon-musk-2025-income"
     },
     {
@@ -232,7 +232,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.65,
-      "title": "{richestName}'s wealth is larger than the entire annual GDP of all but <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\"> 22 countries </a>.",
+      "title": "{richestName}'s wealth is larger than the entire annual GDP of all but <a href=\"https://www.worldometers.info/gdp/gdp-by-country/?source=imf&region=worldwide&year=2026&metric=nominal\" target=\"_blank\" rel=\"noopener noreferrer\">22 countries</a>.",
       "i18nKey": "i18n-richest-wealth-larger-than-gdp",
       "dynamic": "richestDaily"
     },
@@ -257,7 +257,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.725,
-      "title": "~300,000 years ago, the first humans (<a href=\"https://en.wikipedia.org/wiki/Human\" target=\"_blank\" rel=\"noopener noreferrer\"> Homo sapiens </a>) emerged in Africa.",
+      "title": "~300,000 years ago, the first humans (<a href=\"https://en.wikipedia.org/wiki/Human\" target=\"_blank\" rel=\"noopener noreferrer\">Homo sapiens</a>) emerged in Africa.",
       "i18nKey": "i18n-first-humans"
     },
     {
@@ -305,7 +305,7 @@
       "bar": "richest",
       "type": "text",
       "positionFraction": 0.875,
-      "title": "At this scale, wealth isn't just money. It's power — over what gets built, who gets elected, and which stories get told.",
+      "title": "At this scale, wealth isn't just money. <strong>It's power</strong> — over what gets built, who gets elected, and which stories get told.",
       "i18nKey": "i18n-money-equals-power"
     },
     {
@@ -379,7 +379,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.004,
-      "title": "Before we start, a quick note: <br> The numbers below are <strong>estimates</strong>, based on the best publicly available sources I could find (linked throughout). Exact figures vary by methodology and change over time, but the goal here is to convey the <strong>order of magnitude</strong>—the scale of what could be achieved—not perfect precision.",
+      "title": "Before we start, a quick note: <br> The numbers below are <strong>estimates</strong>, based on the best publicly available sources I could find (linked throughout). Exact figures vary by methodology and change over time, but the goal here is to convey the <strong>order of magnitude</strong> — the scale of what could be achieved — not perfect precision.",
       "i18nKey": "i18n-disclaimer"
     },
     {
@@ -397,7 +397,7 @@
       "positionFraction": 0.006,
       "title": "Eradicate Malaria",
       "costUsd": 102000000000,
-      "description": "Malaria is one of the worst infectious diseases ever visited on mankind. In the 20th century alone, malaria killed <a href=\"https://www.ncbi.nlm.nih.gov/books/NBK215638/\" target=\"_blank\" rel=\"noopener noreferrer\"> 150-300 million</a> people. That's more than the <a href=\"https://www.britannica.com/event/Black-Death\" target=\"_blank\" rel=\"noopener noreferrer\"> Black Death</a>.",
+      "description": "Malaria is one of the worst infectious diseases ever visited on mankind. In the 20th century alone, malaria killed <a href=\"https://www.ncbi.nlm.nih.gov/books/NBK215638/\" target=\"_blank\" rel=\"noopener noreferrer\">150-300 million</a> people. That's more than the <a href=\"https://www.britannica.com/event/Black-Death\" target=\"_blank\" rel=\"noopener noreferrer\">Black Death</a>.",
       "tickerGroup": "Infectious Diseases",
       "tickerDescription": "malaria",
       "deathsPerYear": 610000,
@@ -411,7 +411,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.007,
-      "title": "In 2024, there were an estimated 282 million cases of malaria and 610,000 deaths. Most of these deaths <a href=\"https://www.who.int/news-room/fact-sheets/detail/malaria\" target=\"_blank\" rel=\"noopener noreferrer\"> (95%)</a> were in the African region, where <a href=\"https://www.who.int/news-room/fact-sheets/detail/malaria\" target=\"_blank\" rel=\"noopener noreferrer\">75%</a> of the deaths were <strong>children under five</strong>. That's around 434,000 children.",
+      "title": "In 2024, there were an estimated 282 million cases of malaria and 610,000 deaths. Most of these deaths (<a href=\"https://www.who.int/news-room/fact-sheets/detail/malaria\" target=\"_blank\" rel=\"noopener noreferrer\">95%</a>) were in the African region, where <a href=\"https://www.who.int/news-room/fact-sheets/detail/malaria\" target=\"_blank\" rel=\"noopener noreferrer\">75%</a> of the deaths were <strong>children under five</strong>. That's around 434,000 children.",
       "i18nKey": "i18n-malaria-children"
     },
     {
@@ -435,7 +435,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.010,
-      "title": "But Malaria is not the only infectious disease that we could treat or end for a fraction of billionaire wealth. So let's look at some other examples.",
+      "title": "But Malaria is not the only infectious disease that we could treat or end for a fraction of billionaire wealth.",
       "i18nKey": "i18n-not-only-malaria"
     },
     {
@@ -501,7 +501,7 @@
       "positionFraction": 0.015,
       "title": "Combat Antimicrobial resistance (AMR)",
       "costUsd": 315000000000,
-      "description": "Antimicrobial resistance (AMR) is one of the top global public health and development threats. It is estimated that bacterial AMR was directly responsible for <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">1.27 million deaths</a> in 2019 and contributed to <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">4.95 million deaths</a>. <br><br> Improving innovation and access to high quality treatment would cost about <a href=\"https://www.cgdev.org/publication/forecasting-fallout-amr-economic-impacts-antimicrobial-resistance-humans\" target=\"_blank\" rel=\"noopener noreferrer\">$ 315 billion until 2030</a>, but would offer a <a href=\"https://www.cgdev.org/publication/forecasting-fallout-amr-economic-impacts-antimicrobial-resistance-humans\" target=\"_blank\" rel=\"noopener noreferrer\"> 28:1 return on investment</a>, while inaction would cost around <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">$1-3.4 trillion</a> per year by 2030.",
+      "description": "Antimicrobial resistance (AMR) is one of the top global public health and development threats. It is estimated that bacterial AMR was directly responsible for <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">1.27 million deaths</a> in 2019 and contributed to <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">4.95 million deaths</a>. <br><br> Improving innovation and access to high quality treatment would cost about <a href=\"https://www.cgdev.org/publication/forecasting-fallout-amr-economic-impacts-antimicrobial-resistance-humans\" target=\"_blank\" rel=\"noopener noreferrer\">$315 billion until 2030</a>, but would offer a <a href=\"https://www.cgdev.org/publication/forecasting-fallout-amr-economic-impacts-antimicrobial-resistance-humans\" target=\"_blank\" rel=\"noopener noreferrer\">28:1 return on investment</a>, while inaction would cost around <a href=\"https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance\" target=\"_blank\" rel=\"noopener noreferrer\">$1-3.4 trillion</a> per year by 2030.",
       "tickerGroup": "Infectious Diseases",
       "tickerDescription": "AMR",
       "deathsPerYear": 1270000,
@@ -525,7 +525,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.017,
-      "title": "But infectious diseases are not the only global health challenges that are technically solved and we could address with more funding. So let's take a second and look at some other examples from the healthcare sector.",
+      "title": "But infectious diseases are not the only global health challenges that are technically solved and could be addressed with more funding.",
       "i18nKey": "i18n-not-only-infectious-diseases"
     },
     {
@@ -535,7 +535,7 @@
       "positionFraction": 0.018,
       "title": "Eliminate Lead Poisoning",
       "costUsd": 1600000000,
-      "description": "UNICEF estimates it would cost a total of <a href=\"(https://ceh.unicef.org/events-and-resources/knowledge-library/investment-case-ending-childhood-lead-poisoning-2040\" target=\"_blank\" rel=\"noopener noreferrer\">$1.6 billion</a> to eliminate lead poisoning by 2040. In 2019, lead exposure was responsible for 5.54 million deaths and cost the world $6 trillion according to <a href=\"https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00166-3/fulltext\" target=\"_blank\" rel=\"noopener noreferrer\">this</a> study.",
+      "description": "UNICEF estimates it would cost a total of <a href=\"(https://ceh.unicef.org/events-and-resources/knowledge-library/investment-case-ending-childhood-lead-poisoning-2040\" target=\"_blank\" rel=\"noopener noreferrer\">$1.6 billion</a> to eliminate lead poisoning by 2040. In 2019, lead exposure was responsible for 5.54 million deaths and cost the world <a href=\"https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00166-3/fulltext\" target=\"_blank\" rel=\"noopener noreferrer\">$6 trillion</a>.",
       "tickerGroup": "Environmental Health",
       "tickerDescription": "lead-poisoning",
       "deathsPerYear": 5545000,
@@ -578,7 +578,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.022,
-      "title": "A total investment of just <a href=\"https://visionatlas.iapb.org/wp-content/uploads/2025/09/The-Value-of-Vision_Full-Report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$7.1 billion</a> from 2025-2030 would result in <br> - 198 million fewer people with near vision impairment <br> - 24 million fewer people with mild vision impairment <br> - 30 million fewer people with moderate to severe visual impairment<br> - 3 million fewer people with blindness. <br> Apart from the health benefits, this investment would return $28 for every $1 invested.",
+      "title": "A total investment of just <a href=\"https://visionatlas.iapb.org/wp-content/uploads/2025/09/The-Value-of-Vision_Full-Report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$7.1 billion</a> from 2025-2030 would result in: <ul><li>198 million fewer people with near vision impairment</li><li>24 million fewer people with mild vision impairment</li><li>30 million fewer people with moderate to severe visual impairment</li><li>3 million fewer people with blindness</li></ul><br>Apart from the health benefits, this investment would return $28 for every $1 invested.",
       "i18nKey": "i18n-end-blindness-2"
     },
     {
@@ -759,7 +759,7 @@
       "positionFraction": 0.04,
       "title": "Universal Education",
       "costUsd": 485000000000,
-      "description": "<a href=\"https://www.unesco.org/en/articles/more-children-out-school-7th-year-row-273-million\" target=\"_blank\" rel=\"noopener noreferrer\">273 million children</a> are out of school. The financing gap to reach the SDG4 (<a href=\"https://sdgs.un.org/goals/goal4\" target=\"_blank\" rel=\"noopener noreferrer\">Sustainable Development Goal: Education</a>) is <a href=\"https://financing.desa.un.org/sites/default/files/2025-02/Brief%20Series%20-%20UNESCO_Financing%20Gap.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$97 billion per year</a> — about $485 billion total to 2030. If we don't close it, UNESCO estimates the annual cost in lost human potential is <a href=\"https://www.unesco.org/en/articles/what-we-stand-lose-costs-children-and-youth-not-learning-2030\" target=\"_blank\" rel=\"noopener noreferrer\">$10 trillion per year</a>.",
+      "description": "<a href=\"https://www.unesco.org/en/articles/more-children-out-school-7th-year-row-273-million\" target=\"_blank\" rel=\"noopener noreferrer\">273 million children</a> are out of school. Closing the financing gap for the <a href=\"https://sdgs.un.org/goals/goal4\" target=\"_blank\" rel=\"noopener noreferrer\">UN Sustainable Development Goal on Education</a> would cost <a href=\"https://financing.desa.un.org/sites/default/files/2025-02/Brief%20Series%20-%20UNESCO_Financing%20Gap.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$97 billion per year</a>, about $485 billion total by 2030. If we don't, UNESCO estimates the cost in lost human potential is <a href=\"https://www.unesco.org/en/articles/what-we-stand-lose-costs-children-and-youth-not-learning-2030\" target=\"_blank\" rel=\"noopener noreferrer\">$10 trillion per year</a>.",
       "sourceUrl": "https://financing.desa.un.org/sites/default/files/2025-02/Brief%20Series%20-%20UNESCO_Financing%20Gap.pdf",
       "sourceName": "UNESCO",
       "i18nKey": "i18n-universal-education"
@@ -808,7 +808,7 @@
       "positionFraction": 0.045,
       "title": "End Forced Labor",
       "costUsd": 212000000000,
-      "description": "<a href=\"https://www.ilo.org/topics-and-sectors/forced-labour-modern-slavery-and-trafficking-persons\" target=\"_blank\" rel=\"noopener noreferrer\">27.6 million people</a> live in forced labor today. A one-time investment of roughly <a href=\"https://www.ilo.org/sites/default/files/2024-10/Acting%20against%20forced%20labour_report_WEB.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$212 billion</a> could end it — and would increase global GDP by $611 billion.",
+      "description": "<a href=\"https://www.ilo.org/topics-and-sectors/forced-labour-modern-slavery-and-trafficking-persons\" target=\"_blank\" rel=\"noopener noreferrer\">27.6 million people</a> live in forced labor today. A one-time investment of roughly <a href=\"https://www.ilo.org/sites/default/files/2024-10/Acting%20against%20forced%20labour_report_WEB.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">$212 billion</a> could end it and would increase global GDP by $611 billion.",
       "sourceUrl": "https://www.ilo.org/sites/default/files/2024-10/Acting%20against%20forced%20labour_report_WEB.pdf",
       "sourceName": "ILO",
       "i18nKey": "i18n-end-forced-labor"
@@ -845,7 +845,7 @@
       "title": "Universal Healthcare (UHC)",
       "costUsd": 2500000000000,
       "costPeriod": "yearly",
-      "description": "<a href=\"https://www.who.int/news-room/fact-sheets/detail/universal-health-coverage-(uhc)\" target=\"_blank\" rel=\"noopener noreferrer\">4.6 billion people</a> lack essential health services. Universal health coverage (UHC) means that all people have access to the full range of quality health services they need, when and where they need them, without financial hardship. ",
+      "description": "<a href=\"https://www.who.int/news-room/fact-sheets/detail/universal-health-coverage-(uhc)\" target=\"_blank\" rel=\"noopener noreferrer\">4.6 billion people</a> lack essential health services. Universal health coverage means that all people have access to the full range of quality health services they need, when and where they need them, without financial hardship. ",
       "sourceUrl": "https://www.who.int/news-room/fact-sheets/detail/universal-health-coverage-(uhc)",
       "sourceName": "World Health Organization",
       "i18nKey": "i18n-universal-healthcare"
@@ -983,7 +983,7 @@
       "positionFraction": 0.065,
       "title": "Restore Degraded Land",
       "costUsd": 1500000000000,
-      "description": "Achieving a land-degradation-neutral world by 2030 requires restoring approximately 1.5 billion hectares. Closing the funding gap costs about <a href=\"https://unstats.un.org/sdgs/report/2025/goal-15/\" target=\"_blank\" rel=\"noopener noreferrer\">$300 billion per year</a>. Every $1 invested yields <a href=\"https://unstats.un.org/sdgs/report/2025/goal-15/\" target=\"_blank\" rel=\"noopener noreferrer\">$7 to $30</a> in benefits.",
+      "description": "We're currently destroying ecosystems at an alarming rate. Achieving a land-degradation-neutral world by 2030 requires restoring approximately 1.5 billion hectares. Closing the funding gap costs about <a href=\"https://unstats.un.org/sdgs/report/2025/goal-15/\" target=\"_blank\" rel=\"noopener noreferrer\">$300 billion per year</a>. Every $1 invested yields <a href=\"https://unstats.un.org/sdgs/report/2025/goal-15/\" target=\"_blank\" rel=\"noopener noreferrer\">$7 to $30</a> in benefits.",
       "sourceUrl": "https://unstats.un.org/sdgs/report/2025/goal-15/",
       "sourceName": "UN SDG Report",
       "i18nKey": "i18n-land-restoration"
@@ -993,7 +993,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.066,
-      "title": "Every time an ecosystem collapses, it takes species with it — species that took millions of years to evolve and will never come back. Scientists estimate the current extinction rate is <a href=\"https://www.worldwildlife.org/resources/explainers/what-is-the-sixth-mass-extinction-and-what-can-we-do-about-it/\">1,000 to 10,000 times higher</a> than the natural rate.",
+      "title": "Every time an ecosystem collapses, species disappear with it. Species that took millions of years to evolve and will never come back. Scientists estimate the current extinction rate is <a href=\"https://www.worldwildlife.org/resources/explainers/what-is-the-sixth-mass-extinction-and-what-can-we-do-about-it/\">1,000 to 10,000 times higher</a> than the natural rate.",
       "i18nKey": "i18n-biodiversity"
     },
     {
@@ -1023,7 +1023,7 @@
       "positionFraction": 0.069,
       "title": "End Tropical Deforestation",
       "costUsd": 2600000000000,
-      "description": "Stopping tropical deforestation by 2030 would cost about <a href=\"https://www.energy-transitions.org/bitesize/its-in-the-charts-ending-deforestation-cost/\" target=\"_blank\" rel=\"noopener noreferrer\">$2.6 trillion total</a>. It would protect 85–170 gigatons of carbon, millions of species, and Indigenous communities whose land is being destroyed.",
+      "description": "Stopping tropical deforestation by 2030 would cost about <a href=\"https://www.energy-transitions.org/bitesize/its-in-the-charts-ending-deforestation-cost/\" target=\"_blank\" rel=\"noopener noreferrer\">$2.6 trillion</a>. It would protect 85–170 gigatons of carbon, millions of species, and Indigenous communities whose land is being destroyed.",
       "sourceUrl": "https://www.energy-transitions.org/bitesize/its-in-the-charts-ending-deforestation-cost/",
       "sourceName": "Energy Transitions Commission",
       "i18nKey": "i18n-end-deforestation"
@@ -1043,7 +1043,7 @@
       "positionFraction": 0.071,
       "title": "Close the Energy Transition Gap",
       "costUsd": 1430000000000,
-      "description": "Developing countries didn't cause the climate crisis, but they can't afford upfront cost to switch to clean energy on their own. Closing their <a href=\"https://unctad.org/sdg-costing/energy-transition\">$1.43 trillion energy transition funding gap</a> until 2030 would replace coal with solar and diesel with wind in the places where it matters most and is funded least.",
+      "description": "Developing countries didn't cause the climate crisis, but they can't afford upfront cost to switch to clean energy on their own. Closing their <a href=\"https://unctad.org/sdg-costing/energy-transition\">$1.43 trillion</a> energy transition funding gap until 2030 would replace coal with solar and diesel with wind in the places where it matters most and is funded least.",
       "sourceUrl": "https://sdgs.un.org/goals",
       "sourceName": "United Nations SDGs",
       "i18nKey": "i18n-energy-transition"
@@ -1053,7 +1053,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.072,
-      "title": "This wouldn't only solve the energy transition gap, it would also save millions of lives.  Outdoor air pollution (overwhelmingly from burning fossil fuels) kills <a href=\"https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health\">4.2 million people</a> every year. The energy transition we just funded also provides clean air.",
+      "title": "This wouldn't only solve the energy transition gap, it would also save millions of lives.  Outdoor air pollution (overwhelmingly from burning fossil fuels) kills <a href=\"https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health\">4.2 million people</a> every year. Clean energy also means clean air.",
       "tickerDescription": "outdoor air pollution",
       "deathsPerYear": 4200000,
       "tickerGroup": "Environmental Health",
@@ -1064,7 +1064,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.073,
-      "title": "And this would benefit everyone. Almost <a href=\"https://www.who.int/data/gho/data/themes/air-pollution\">every person on Earth</a> (99% of the global population) breathes air that doesn't meet WHO guidelines.",
+      "title": "And this would benefit everyone. Almost every person on Earth (<a href=\"https://www.who.int/data/gho/data/themes/air-pollution\">99% of the global population</a>) breathes air that doesn't meet WHO guidelines.",
       "i18nKey": "i18n-air-pollution"
     },
     {
@@ -1072,7 +1072,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.074,
-      "title": "If you've made it this far, you've scrolled past the solutions to many major crises humanity faces. Disease. Hunger. Poverty. Exploitation. The climate. Every single one of them solvable. Every single one of them affordable.",
+      "title": "You've just scrolled past the solutions to many of humanity's greatest crises. Disease. Hunger. Poverty. Exploitation. The climate. Every single one of them solvable. Every single one of them affordable:",
       "i18nKey": "i18n-major-crises-solvable"
     },
     {
@@ -1081,8 +1081,8 @@
       "type": "cause",
       "positionFraction": 0.075,
       "costUsd": 12732700000000,
-      "title": "ALL of the Above — Combined",
-      "description": "Every infectious disease I listed, lead poisoning, vision, hearing, water and sanitation, hunger, clean cooking, electricity, education, poverty, forced labor, child labor, universal healthcare, climate adaptation, land restoration, ocean cleanup, deforestation, and the energy transition — <strong>all of it, together</strong>.",
+      "title": "ALL OF IT, TOGETHER",
+      "description": "Infectious diseases, lead poisoning, vision, hearing, water and sanitation, hunger, clean cooking, electricity, education, poverty, forced labor, universal healthcare, climate adaptation, land restoration, ocean cleanup, deforestation, and the energy transition. <strong>All of it, together</strong>.",
       "i18nKey": "i18n-grand-summary"
     },
     {
@@ -1090,7 +1090,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.076,
-      "title": "That includes the total cost of all interventions (some until 2030) plus the yearly costs of Universal Healthcare, ending extreme poverty and provide clean water and sanitation. It would take an additional $2.93 trillion yearly to fund these 3 causes further (~73% of what billionaires gained last year).",
+      "title": "That includes the total cost of all interventions (some until 2030) plus the yearly costs of Universal Healthcare, ending extreme poverty and providing clean water and sanitation. It would take an additional $2.93 trillion yearly to fund these 3 causes further (~73% of what billionaires gained last year).",
       "i18nKey": "i18n-cost-interval"
     },
     {
@@ -1162,7 +1162,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.085,
-      "title": "Given the choice between millions of preventable deaths, and slightly reducing the fortunes of a few thousand ultra-wealthy people, how could anyone conclude that the deaths are preferable?",
+      "title": "Given the choice between millions of preventable deaths, and slightly reducing the fortunes of a few thousand ultra-wealthy people, <strong>how could anyone conclude that the deaths are preferable?</strong>",
       "i18nKey": "i18n-moral-question"
     },
     {
@@ -1234,7 +1234,7 @@
       "bar": "allBillionaires",
       "type": "text",
       "positionFraction": 0.63,
-      "title": "Wow, you're still going? Congrats, you now reached the point of their wealth that could fund all the things I listed above. Everything from this point on would still be theirs, if we don't collectively decide that the remaining money could be used for better things as well.",
+      "title": "Wow, you're still going? You reached the point of their wealth that could fund all the things I listed above. Everything from this point on would still be theirs, if we don't collectively decide that the remaining money could be used for better things as well.",
       "i18nKey": "i18n-scroll-63-percent-of-money"
     }
   ],

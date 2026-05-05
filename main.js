@@ -25,6 +25,13 @@ const money = new Intl.NumberFormat('en-US', {
 });
 
 function formatCompactMoney(n) {
+  var lang = window.i18n_data && window.i18n_data.code;
+  if (lang === 'de') {
+    if (n >= 1e12) return (n / 1e12).toFixed(2).replace(/\.?0+$/, '').replace('.', ',') + ' Bio. $';
+    if (n >= 1e9)  return (n / 1e9).toFixed(1).replace(/\.0$/, '').replace('.', ',') + ' Mrd. $';
+    if (n >= 1e6)  return (n / 1e6).toFixed(1).replace(/\.0$/, '').replace('.', ',') + ' Mio. $';
+    return money.format(n);
+  }
   if (n >= 1e12) return '$' + (n / 1e12).toFixed(2).replace(/\.?0+$/, '') + 'T';
   if (n >= 1e9)  return '$' + (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B';
   if (n >= 1e6)  return '$' + (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -82,6 +89,34 @@ function getMaxSafeAllBillionairesH(barWidth) {
   const richestH = Math.round(richestPersonWealthUsd / (barWidth * DOLLARS_PER_PIXEL));
   const otherContentH = 10000;
   return Math.max(0, _detectedMaxScrollHeight - richestH - otherContentH);
+}
+
+// ─── i18n Helpers ───────────────────────────────────────────────────
+function t(key, fallback) {
+  if (window.i18n_data && window.i18n_data.strings && key) {
+    var val = window.i18n_data.strings[key];
+    if (val !== undefined) return val;
+  }
+  return fallback;
+}
+
+function tUI(key, fallback) {
+  return t('i18n-ui-' + key, fallback);
+}
+
+function localizeComp(comp) {
+  var c = {};
+  for (var k in comp) { if (comp.hasOwnProperty(k)) c[k] = comp[k]; }
+  var base = comp.i18nKey;
+  if (base) {
+    c.title = t(base, c.title);
+    c.description = t(base + '-desc', c.description);
+    c.deathLabel = t(base + '-death-label', c.deathLabel);
+    c.sourceName = t(base + '-source-name', c.sourceName);
+    c.imageAlt = t(base + '-image-alt', c.imageAlt);
+    c.tickerDescription = t(base + '-ticker-desc', c.tickerDescription);
+  }
+  return c;
 }
 
 // ─── Layout Computation ─────────────────────────────────────────────
@@ -248,10 +283,20 @@ function applyData(billionaireData, storyData) {
   applyDimensions(computeBarWidth());
 
   const richestTitle = document.getElementById('richest-title');
-  if (richestTitle) richestTitle.textContent = money.format(richestPersonWealthUsd) + ' (wealth of ' + richestName + ')';
+  if (richestTitle) {
+    richestTitle.textContent = interpolate(
+      tUI('richest-title', '{amount} (wealth of {name})'),
+      { amount: money.format(richestPersonWealthUsd), name: richestName }
+    );
+  }
 
   const allTitle = document.getElementById('allBillionaires-title');
-  if (allTitle) allTitle.textContent = 'All the world\u2019s ' + thousand.format(billionaireCount) + ' billionaires (' + formatCompactMoney(allBillionairesTotalUsd) + ')';
+  if (allTitle) {
+    allTitle.textContent = interpolate(
+      tUI('all-billionaires-title', 'All the world\u2019s {count} billionaires ({amount})'),
+      { count: thousand.format(billionaireCount), amount: formatCompactMoney(allBillionairesTotalUsd) }
+    );
+  }
 
   renderComparisons();
 
@@ -329,12 +374,23 @@ function prepareAllBillionairesComparisons(comparisons) {
     bar: 'allBillionaires',
     type: 'text',
     positionFraction: 0.95,
-    title: '<strong>Even your browser can\'t handle this much money!</strong><br><br>' +
-      'You\'ve scrolled through ~<strong>' + fmtPct(pctReached) + '</strong> ' +
-      'of their wealth and your device has reached its limit.' +
-      'The remaining <strong>' + fmtPct(100 - pctReached) + '</strong> \u2014 about <strong>' +
-      formatCompactMoney(remainingWealth) + '</strong> \u2014 simply can\'t be displayed.<br><br>' +
-      formatCompactMoney(allBillionairesTotalUsd) +', a number too large for your browser to show. But not too large for ' + thousand.format(billionaireCount) + ' billionaires to own!'
+    title: interpolate(
+      tUI('browser-broke',
+        '<strong>Even your browser can\'t handle this much money!</strong><br><br>' +
+        'You\'ve scrolled through ~<strong>{pctReached}</strong> ' +
+        'of their wealth and your device has reached its limit.' +
+        'The remaining <strong>{pctRemaining}</strong> \u2014 about <strong>' +
+        '{remainingFormatted}</strong> \u2014 simply can\'t be displayed.<br><br>' +
+        '{totalFormatted}, a number too large for your browser to show. But not too large for {billionaireCount} billionaires to own!'
+      ),
+      {
+        pctReached: fmtPct(pctReached),
+        pctRemaining: fmtPct(100 - pctReached),
+        remainingFormatted: formatCompactMoney(remainingWealth),
+        totalFormatted: formatCompactMoney(allBillionairesTotalUsd),
+        billionaireCount: thousand.format(billionaireCount)
+      }
+    )
   };
   remapped.push(brokeMessage);
 
@@ -546,22 +602,27 @@ function renderCauseContent(comp, totalWealth) {
   let html = '<div class="cause-card">';
   html += renderPieChartHtml(pct, pctStr);
 
-  const costSuffix = comp.costPeriod === 'yearly' ? '/year' : ' total';
+  const costSuffix = comp.costPeriod === 'yearly'
+    ? tUI('cost-yearly', '/year')
+    : tUI('cost-total', ' total');
+  const ofAllBillionaires = tUI('of-all-billionaire-wealth', 'of all billionaire wealth');
+
   html += '<div class="cause-content">' +
     '<h3 class="cause-title">' + comp.title + '</h3>' +
-    '<div class="cause-cost">' + formatCompactMoney(comp.costUsd) + costSuffix + ' \u2014 ' + pctStr + ' of all billionaire wealth</div>' +
+    '<div class="cause-cost">' + formatCompactMoney(comp.costUsd) + costSuffix + ' \u2014 ' + pctStr + ' ' + ofAllBillionaires + '</div>' +
     '<p class="cause-desc">' + comp.description + '</p>';
 
   if (comp.deathsPerYear) {
     const perDay = Math.round(comp.deathsPerYear / 365);
+    const deathLabel = comp.deathLabel || tUI('deaths', 'deaths');
     html += '<div class="cause-deaths">' +
-      '<strong>' + thousand.format(perDay) + '</strong> ' + (comp.deathLabel || 'deaths') + ' per day \u2014 ' +
-      '<strong>' + thousand.format(comp.deathsPerYear) + '</strong> per year' +
+      '<strong>' + thousand.format(perDay) + '</strong> ' + deathLabel + ' ' + tUI('per-day', 'per day') + ' \u2014 ' +
+      '<strong>' + thousand.format(comp.deathsPerYear) + '</strong> ' + tUI('per-year', 'per year') +
     '</div>';
   }
 
   if (comp.sourceUrl) {
-    html += '<div class="cause-source">Source: <a href="' + comp.sourceUrl + '" target="_blank" rel="noopener noreferrer">' + (comp.sourceName || 'Link') + '</a></div>';
+    html += '<div class="cause-source">' + tUI('source', 'Source') + ': <a href="' + comp.sourceUrl + '" target="_blank" rel="noopener noreferrer">' + (comp.sourceName || 'Link') + '</a></div>';
   }
 
   html += '</div></div>';
@@ -590,11 +651,12 @@ function renderSummaryContent(comp, totalWealth) {
     story.comparisons.forEach(function(c) {
       if (ids.indexOf(c.id) !== -1 && c.costUsd) {
         totalCost += c.costUsd;
-        items.push({ title: c.title, cost: c.costUsd });
+        items.push({ title: t(c.i18nKey, c.title), cost: c.costUsd });
       }
     });
   }
   const summaryPct = (totalCost / totalWealth) * 100;
+  const ofAllBillionaires = tUI('of-all-billionaire-wealth', 'of all billionaire wealth');
 
   let html = '<div class="summary-card">';
   html += '<h3 class="cause-title">' + comp.title + '</h3>';
@@ -602,7 +664,7 @@ function renderSummaryContent(comp, totalWealth) {
   html += renderBarChartHtml(items, totalCost);
 
   html += '<div class="summary-total">' +
-    '<strong>Total: ' + formatCompactMoney(totalCost) + '</strong> \u2014 ' + fmtPct(summaryPct) + ' of all billionaire wealth' +
+    '<strong>' + tUI('total', 'Total') + ': ' + formatCompactMoney(totalCost) + '</strong> \u2014 ' + fmtPct(summaryPct) + ' ' + ofAllBillionaires +
   '</div>';
 
   html += '<div class="cause-pie summary-pie">' +
@@ -617,6 +679,7 @@ function renderSummaryContent(comp, totalWealth) {
 }
 
 function createComparisonElement(comp, totalWealth, vars) {
+  comp = localizeComp(comp);
   const wrapper = document.createElement('div');
   wrapper.className = 'infobox comparison-' + comp.id;
 
@@ -663,18 +726,24 @@ function startDeathTicker() {
   const reopenBtn = document.getElementById('death-ticker-reopen');
   if (!tickerEl || !countsEl || !closeBtn || !reopenBtn) return;
 
+  var tickerLabel = tickerEl.querySelector('.death-ticker-label');
+  if (tickerLabel) {
+    tickerLabel.textContent = tUI('preventable-deaths-label', 'PREVENTABLE DEATHS SINCE YOU OPENED THIS PAGE:');
+  }
+
   // Build groups from comparisons that have both deathsPerYear and tickerGroup
   const groups = {};
   const groupOrder = [];
   if (story && story.comparisons) {
     story.comparisons.forEach(function(c) {
       if (!c.deathsPerYear || !c.tickerGroup) return;
+      var lc = localizeComp(c);  // ← localize here
       if (!groups[c.tickerGroup]) {
         groups[c.tickerGroup] = [];
         groupOrder.push(c.tickerGroup);
       }
       groups[c.tickerGroup].push({
-        label: getTickerItemLabel(c),
+        label: getTickerItemLabel(lc),
         perSecond: c.deathsPerYear / (365.25 * 24 * 3600),
       });
     });
@@ -703,6 +772,10 @@ function startDeathTicker() {
   window.addEventListener('scroll', checkVisibility);
   checkVisibility();
 
+  function translateGroupName(name) {
+    return t('i18n-ticker-group-' + name.toLowerCase().replace(/ /g, '-'), name);
+  }
+
   function update() {
     const elapsed = (Date.now() - pageOpenedAt) / 1000;
     let grandTotal = 0;
@@ -717,7 +790,7 @@ function startDeathTicker() {
       html += '<div class="ticker-group">' +
         '<div class="ticker-row ticker-group-total">' +
           '<span class="ticker-count ticker-count-group">' + thousand.format(groupTotal) + '</span>' +
-          '<span class="ticker-label ticker-label-group">' + groupName + '</span>' +
+          '<span class="ticker-label ticker-label-group">' + translateGroupName(groupName) + '</span>' +
         '</div>' +
         '<div class="ticker-group-causes">' + groupCauseText[groupName] + '</div>' +
       '</div>';
@@ -725,7 +798,7 @@ function startDeathTicker() {
 
     html += '<div class="ticker-row ticker-total">' +
       '<span class="ticker-count">' + thousand.format(grandTotal) + '</span>' +
-      '<span class="ticker-label">total preventable deaths</span>' +
+      '<span class="ticker-label">' + tUI('total-preventable-deaths', 'total preventable deaths') + '</span>' +
     '</div>';
     countsEl.innerHTML = html;
   }

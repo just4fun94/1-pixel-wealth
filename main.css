@@ -207,6 +207,11 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
+.infobox ul {
+  text-align: left;
+  display: inline-block;
+  margin: 0.5em auto;
+}
 
 /* ─── Sticky centering for infobox content ─── */
 .text-infobox .title,
